@@ -1,0 +1,155 @@
+{
+  "langage": "fr",
+  "generics": {
+    "copyright": "Copyright © 2025 - Tous droits réservés",
+    "designed": "Design & développement",
+    "seeMore": "Voir plus",
+    "aboutMe": "À propos de moi",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "sendEmail": "Envois-moi un email",
+    "downloadCV": "Télécharger mon CV",
+    "projects": "Projets",
+    "tags": "Technologies",
+    "date": "Date",
+    "customer": "Client",
+    "privacyPolicy": "Politique de confidentialité"
+  },
+  "status": "Prêt à travailler",
+  "position": "Développeur Fullstack",
+  "location": "Actuellement à Quimper, France",
+  "hey": "Hey you!",
+  "home": {
+    "name": "home"
+  },
+  "music": {
+    "title": "Découvre ma musique",
+    "description": "En dehors du code, la musique occupe une place essentielle dans ma vie. Je joue de la guitare depuis de nombreuses années, avec une affinité particulière pour les sons saturés, planants ou énergiques. Du rock psyché au stoner, en passant parfois par des teintes plus métal.<br></br><br></br>Pendant mes deux années passées à Rennes, ce goût s'est concrétisé dans un projet d'album avec trois amis musiciens : Hugo, Charles et Adrien. Ensemble, on a façonné un univers qui nous ressemble, entre rock progressif, psychédélique et envolées plus lourdes."
+  },
+  "about": {
+    "andMore": "(Mais pas que)",
+    "smallDesc": "Salut ! Moi c’est Noé, développeur fullstack avec une casquette de chef de projet. Créatif, curieux, passionné d’images, de sons et de mouvements, j’aime autant concevoir que coder. Si tu veux en savoir plus sur mon parcours un peu atypique, fais défiler 👇",
+    "resume": "Je suis développeur fullstack avec une approche orientée gestion de projet, formé à la fois au code et à la coordination. Grâce à mon Master en management de projet digital, mon expérience en agence et une curiosité toujours en éveil, je suis capable de piloter un projet web de A à Z autant du côté technique, fonctionnel et humain. De retour d’un an de road-trip en Nouvelle-Zélande, je suis dispo pour de nouveaux défis, en freelance ou en équipe.",
+    "description": {
+      "part1": {
+        "part": "À propos",
+        "title": "Hello ! Moi c’est Noé",
+        "text": "Je rentre d’un road-trip d’un an en van à travers la Nouvelle-Zélande : une expérience de vie marquante qui m’a permis de sortir du cadre, de m’ouvrir à d’autres cultures et de renforcer mon anglais (il partait de loin, on va pas se mentir). J’ai mis le code entre parenthèses le temps de mieux observer le monde et le capturer en photo. Un vrai bol d’air… qui m’a aussi permis de revenir avec plus de recul, d’envies et d’idées."
+      },
+      "part2": {
+        "part": "études",
+        "title": "Du prof de maths au code",
+        "text": "J’ai suivi un Master de Manager de Projet Digitaux à Rennes, avec une spécialisation en développement fullstack. Cette double casquette m’a permis de développer des compétences autant techniques que stratégiques : coder proprement, structurer des projets, collaborer avec des clients ou des équipes pluridisciplinaires. Mon parcours a commencé avec une passion pour les maths, mais c’est en me tournant vers le développement que j’ai trouvé ce qui me correspondait : un métier qui allie rigueur, logique et créativité."
+      },
+      "part3": {
+        "part": "expérience",
+        "title": "3 ans chez Bob le Développeur",
+        "text": "J’ai passé trois années chez Bob Le Développeur, une agence web parisienne où j’ai évolué comme développeur fullstack en alternance. J’y ai conçu des applications sur-mesure avec des stacks modernes comme Next.js et Nest.js, tout en participant à la gestion de projet : échanges clients, suivi des besoins, organisation des sprints… Cette expérience en petite équipe m’a appris à porter plusieurs casquettes et à garder une vision produit tout au long du process."
+      },
+      "part4": {
+        "part": "passions",
+        "title": "Ce qui m’anime en dehors du code",
+        "text": "En dehors du code, je suis passionné par la musique et la photo. Composer, expérimenter, cadrer… ce sont pour moi des formes d’expression complémentaires au développement : elles demandent de la rigueur, du feeling, et un vrai sens du détail. Pour équilibrer les longues sessions devant l’écran, je pratique la natation et l’escalade — deux disciplines qui m’aident à rester concentré, en forme, et aligné."
+      }
+    },
+    "education": {
+      "title": "Parcours",
+      "item1": {
+        "diploma": "Master Manager de Projet Digitaux",
+        "school": "MyDigitalSchool",
+        "location": "Rennes, France",
+        "year": "2021 - 2024",
+        "url": "https://www.myfrenchdegree.com/formations/mba-developpeur-full-stack-france"
+      },
+      "item2": {
+        "diploma": "Licence Pro Développement Web et Mobile",
+        "school": "La Sorbonne",
+        "location": "Paris, France",
+        "year": "2020 - 2021",
+        "url": "https://www.cfa-sciences.fr/licence-professionnelle-3eme-annee-metiers-de-linformatique-applications-web-parcours-projet-web-et"
+      },
+      "item3": {
+        "diploma": "Licence Mathématique, Physique et Informatique",
+        "school": "Université de Brest",
+        "location": "Brest, France",
+        "year": "2018 - 2020",
+        "url": "https://formations.univ-brest.fr/fr/index/sciences-technologies-sante-STS/licence-XA/portail-mpmei-mathematiques-physique-maths-economie-informatique-KYA659ZE/l1-portail-mpmei-KYEFYSRJ.html"
+      }
+    },
+    "experience": {
+      "title": "Expérience",
+      "item1": {
+        "company": "Bob le Développeur",
+        "location": "Paris, France",
+        "year": "2021 - 2024",
+        "description": "Développeur fullstack en alternance",
+        "url": "https://www.bob-le-developpeur.com/"
+      },
+      "item2": {
+        "company": "Tildev",
+        "location": "Rennes, France",
+        "year": "2024",
+        "description": "Développeur fullstack",
+        "url": "https://tildev.fr/"
+      }
+    }
+  },
+  "projects": {
+    "seeOne": "Voir le projet",
+    "seeAll": "Découvrir tous les projets",
+    "seeGithub": "Voir sur GitHub",
+    "seeWeb": "Voir le site",
+    "type": "Type de projet",
+    "noProjectsFound": "Aucun projet trouvé",
+    "desktopImages": "Images desktop",
+    "mobileImages": "Images mobile",
+    "videos": "Vidéos"
+  },
+  "nav": {
+    "ABOUT": "À propos de moi",
+    "PROJECTS": "Découvrir mes projets",
+    "MUSIC": "Écouter ma musique"
+  },
+  "funFacts": {
+    "fact1": "Les wombats laissent des crottes cubiques.",
+    "fact2": "Ton ADN est à 60 % identique à celui d’une banane.",
+    "fact3": "Il pleut du métal sur certaines planètes.",
+    "fact4": "Une girafe ne fait pas de bruit : elle n’a pas de cordes vocales.",
+    "fact5": "Les arbres parlent. Lentement, sous la terre.",
+    "fact6": "Le chocolat, c’était de l’argent chez les Aztèques.",
+    "fact7": "La Lune s’éloigne. De 3,8 cm. Chaque année.",
+    "fact8": "Les tortues peuvent respirer… par les fesses.",
+    "fact9": "Un jour sur Vénus est plus long qu’une année.",
+    "fact10": "Les koalas ont des empreintes digitales quasi humaines.",
+    "fact11": "Une minute de silence dure souvent 61 secondes.",
+    "fact12": "Le cerveau pèse 2 % du corps, mais consomme 20 % de son énergie.",
+    "fact13": "Le miel ne périme pas. Vraiment. Même dans 3 000 ans.",
+    "fact14": "Les nuages peuvent peser 500 tonnes. Et ils flottent tranquille.",
+    "fact15": "Le mot “alphabet” est né d’Alpha et Bêta.",
+    "fact16": "Les pieuvres ont trois cœurs.",
+    "fact17": "Les bananes sont des baies. Pas les fraises.",
+    "fact18": "Les requins existaient avant les arbres.",
+    "fact19": "Il existe une méduse capable de vivre éternellement.",
+    "fact20": "Les humains brillent dans le noir, mais la lumière est trop faible pour être vue.",
+    "fact21": "Les paresseux peuvent retenir leur souffle plus longtemps que les dauphins.",
+    "fact22": "La pluie a une odeur. On l’appelle le pétrichor.",
+    "fact23": "L’espace a une odeur de viande grillée.",
+    "fact24": "Les vaches ont des meilleures amies et stressent quand elles sont séparées.",
+    "fact25": "L’eau peut bouillir et geler en même temps.",
+    "fact26": "Une cuillère à café d’étoile à neutrons pèserait six milliards de tonnes.",
+    "fact27": "Certaines tortues peuvent vivre sans oxygène pendant des mois.",
+    "fact28": "Il y a plus d’étoiles dans l’univers que de grains de sable sur Terre.",
+    "fact29": "La tour Eiffel grandit en été.",
+    "fact30": "Les oiseaux sont les plus proches parents vivants des dinosaures."
+  },
+  "cookieConsent": {
+    "description": "J'utilise des cookies pour analyser le trafic et améliorer votre expérience. Ces données sont anonymisées et ne permettent pas de vous identifier personnellement.",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  },
+  "footer": {
+    "title": "Envie de construire quelque chose ensemble ? N'hésite pas à me contacter !"
+  }
+}

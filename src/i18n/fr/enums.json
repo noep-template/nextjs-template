@@ -1,0 +1,23 @@
+{
+  "HOME": "Accueil",
+  "CONTACT": "Contact",
+  "MENU": "Menu",
+  "ABOUT": "À propos",
+  "PROJECTS": "Projets",
+  "MUSIC": "Musique",
+  "FREELANCE": "Freelance",
+  "PERSONAL": "Personnel",
+  "WORK": "Travail",
+  "SCHOOL": "Étude",
+  "TRAVEL": "Voyage",
+  "NEXTJS": "Next.js",
+  "TYPESCRIPT": "TypeScript",
+  "TAILWIND": "Tailwind CSS",
+  "NESTJS": "Nest.js",
+  "REACT_NATIVE": "React Native",
+  "ANIMATION": "Animation",
+  "DOCKER": "Docker",
+  "POSTGRESQL": "PostgreSQL",
+  "GSAP": "GSAP",
+  "PROG_WEB_APP": "Progressive Web App"
+}

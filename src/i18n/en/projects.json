@@ -1,0 +1,74 @@
+{
+  "sakana-san": {
+    "title": "Sakana San",
+    "description": "Freelance project for <a>Sakana San</a> (Louis Renier), a tattoo artist based in Pont l'Abbé, Brittany. The goal was to design a modern, responsive, and bilingual showcase website to highlight his creations (tattoos, drawings, t-shirts, music) while reflecting his unique artistic identity. The project also includes a minimalist, mobile-friendly backoffice, allowing him to manage his content, events, and homepage updates independently.<br></br><br></br>The site was designed mobile-first and optimized for SEO. It was deployed on a VPS using Docker Compose, and includes traffic tracking via Google Analytics.",
+    "metas": {
+      "title": "Sakana San — Tattoo Artist Showcase | Noé Philippe",
+      "description": "Discover the bilingual and responsive showcase website of Sakana San, tattoo artist in Pont l'Abbé. A freelance project combining modern design, custom backoffice and SEO optimization.",
+      "keywords": "artist showcase, Finistère tattoo artist, freelance web development, responsive design, custom backoffice, SEO optimization, Docker Compose"
+    }
+  },
+  "tildev": {
+    "title": "Tildev",
+    "description": "Freelance project for <a>Tildev</a>, a company specialized in developing digital medical record management solutions for the healthcare sector. I created the company's showcase website as well as their flagship solution Syopé, an intervention management platform used by more than 635 organizations and establishments. The project also included maintenance of their various solutions, including eFiBi, a victim management system developed in collaboration with the BSPP (Paris Fire Brigade).<br></br><br></br>During these three weeks, I implemented a modern and scalable architecture while ensuring compatibility with existing systems. The showcase website was designed to highlight Tildev's expertise in healthcare and IT, while clearly presenting their innovative solutions.",
+    "metas": {
+      "title": "Tildev — Medical Record Management Solutions | Noé Philippe",
+      "description": "Discover Tildev's showcase website and their innovative solutions for digital medical record management. A freelance project combining web development and healthcare solutions maintenance.",
+      "keywords": "Tildev, Syopé, eFiBi, medical record management, healthcare digitalization, freelance web development, application maintenance, BSPP"
+    }
+  },
+  "kerluskellik": {
+    "title": "Kerluskellik",
+    "description": "Freelance project for <a>Kerluskellik</a>, a character house located on the Île de Batz. I developed a modern and responsive showcase website to present this magnificent captain's house, South-facing and overlooking the sea. The site highlights the different rooms, available amenities, and rental rates.<br></br><br></br>The project includes an intuitive user interface with a photo gallery, interactive map, and testimonial system. The site has been optimized for natural referencing and offers a smooth user experience across all devices.",
+    "metas": {
+      "title": "Kerluskellik — House Rental on Île de Batz | Noé Philippe",
+      "description": "Discover the showcase website of Kerluskellik, a magnificent character house for rent on Île de Batz. A freelance project combining modern design and real estate presentation.",
+      "keywords": "Île de Batz rental, character house, Brittany vacation rental, freelance web development, real estate showcase website, SEO optimization"
+    }
+  },
+  "romane-faupin": {
+    "title": "Romane Faupin",
+    "description": "Freelance project for <a>Romane Faupin</a>, a painter and illustrator based in Paris. I developed a modern and responsive showcase website to present her unique artistic universe, combining painting, illustration, and engraving. The site highlights her portfolio, exhibitions, and collaborations.<br></br><br></br>The project includes an interactive artwork gallery, a news section for her exhibitions, and a detailed presentation of her artistic journey. The site was designed to offer an immersive experience that reflects Romane's artistic sensitivity.",
+    "metas": {
+      "title": "Romane Faupin — Painter Artist Showcase | Noé Philippe",
+      "description": "Discover the showcase website of Romane Faupin, painter and illustrator in Paris. A freelance project combining modern design and artwork presentation.",
+      "keywords": "painter artist, illustration, engraving, artist showcase website, freelance web development, responsive design, artistic portfolio"
+    }
+  },
+  "fast-foodie": {
+    "title": "Fast&Foodie",
+    "description": "Mobile-friendly web application for meal and grocery management, focusing on simplicity and time-saving. The project includes comprehensive meal management with photos and recipes, weekly meal planning, and an interactive grocery list organized by departments.<br></br><br></br>Built with Next.js, TypeScript, and TailwindCSS, the application offers an intuitive user interface with sliding modals and tab bar navigation. PostgreSQL database ensures data persistence, while Tanstack and Shadcn UI components guarantee a modern and responsive user experience.",
+    "metas": {
+      "title": "Fast&Foodie — Meal Management Application | Noé Philippe",
+      "description": "Discover Fast&Foodie, a modern web application for meal and grocery management. A project combining mobile-first design and practical features.",
+      "keywords": "meal management, grocery list, web application, Next.js, TypeScript, TailwindCSS, PostgreSQL, mobile-first design"
+    }
+  },
+  "iggy": {
+    "title": "Iggy",
+    "description": "Final project for my Master's degree in Digital Project Management. Iggy is a mobile application dedicated to pet welfare, helping families effectively manage their pets' care. The app facilitates coordination between parents and children for daily pet-related tasks while providing welfare monitoring.<br></br><br></br>Developed with React Native (Expo) and NestJS, the application also includes a Next.js back-office for administrative management. The project emphasizes personal data security with advanced encryption and uses Docker for containerization. The technical architecture was carefully designed to ensure a smooth user experience and simplified maintenance.",
+    "metas": {
+      "title": "Iggy — Pet Welfare Management Application | Noé Philippe",
+      "description": "Discover Iggy, an innovative mobile application for family pet welfare management. A final year project combining mobile design and data security.",
+      "keywords": "pet welfare, mobile application, React Native, NestJS, Next.js, Docker, data security, final year project"
+    }
+  },
+  "perdus-en-foret": {
+    "title": "Lost in the Forest",
+    "description": "Final project for my Professional Bachelor's degree in Web and Mobile Development at Sorbonne University. Lost in the Forest is a mobile and web application that maps rescue points along hiking trails. The goal is to reduce emergency response time in case of accidents.<br></br><br></br>Developed with React Native and Firebase, the application features an interactive Google Maps integration, a robust authentication system, and real-time synchronization with Redux. The project was implemented following agile methodologies (Scrum) with a team of developers, including regular code reviews and pair programming.",
+    "metas": {
+      "title": "Lost in the Forest — Hiking Safety Application | Noé Philippe",
+      "description": "Discover Lost in the Forest, a mobile and web application for hiker safety. A final year project combining mapping and emergency management.",
+      "keywords": "hiking safety, mobile application, React Native, Firebase, Google Maps, Redux, Scrum, pair programming"
+    }
+  },
+  "bob-le-developpeur": {
+    "title": "Bob le Développeur",
+    "description": "Team project at <a>Bob le Développeur</a>, a Paris-based web agency specializing in custom application development for a wide range of clients. I contributed to the design and development of web and mobile platforms for major clients, both on the front-end and back-end, working closely with multidisciplinary teams.<br></br><br></br>Here are some flagship projects delivered: \n<ul>\n<li><b>Athome</b>: Digitalization of internal processes and creation of online platforms for managing energy renovation projects. Custom tools to automate and simplify client and project management.</li>\n<li><b>Racing Club de Strasbourg</b>: Collaborative application to connect local stakeholders, promote offers, and facilitate communication between partner companies around the club.</li>\n<li><b>Surge</b>: Development of analysis and visualization tools for predictive medicine, working with medical experts to turn complex business needs into innovative software solutions.</li>\n<li><b>Alfred</b>: Financial coaching platform for Groupe Pluralle, enabling users to optimize their taxes and manage financial projects with a smooth and personalized user experience.</li>\n<li><b>Allocab</b>: Complete redesign of the website for France's leading VTC network, generating thousands of static pages and optimizing the customer journey for tens of thousands of daily users.</li>\n</ul><br></br>Each project was an opportunity to work on modern architectures (Next.js, NestJS, React Native, Docker, PostgreSQL), ensuring technical quality, security, and performance, while collaborating closely with clients and teams to meet demanding business needs.",
+    "metas": {
+      "title": "Bob le Développeur — Custom Agency Projects | Noé Philippe",
+      "description": "Discover the projects delivered at Bob le Développeur: web platforms, mobile applications, and business tools for major clients. A team effort combining technical expertise, innovation, and project management.",
+      "keywords": "Bob le Développeur, web agency, custom development, Next.js, NestJS, React Native, Docker, PostgreSQL, digitalization, project management, web applications, mobile applications, major clients"
+    }
+  }
+}
