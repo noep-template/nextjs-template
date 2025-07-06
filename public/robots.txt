@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://noe-philippe.fr
+Host: https://your-domain.com
 
 # Sitemaps
-Sitemap: https://noe-philippe.fr/sitemap.xml 
+Sitemap: https://your-domain.com/sitemap.xml 

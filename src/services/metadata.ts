@@ -21,10 +21,10 @@ export const defaultMetadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    siteName: 'Noé Philippe Portfolio',
+    siteName: 'Nextjs Template',
     images: [
       {
-        url: '/og.jpg',
+        url: '/og.jpeg',
       },
     ],
   },

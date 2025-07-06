@@ -26,9 +26,7 @@ export enum NavKeys {
 }
 
 export enum MenuKeys {
-  ABOUT = 'ABOUT',
   PROJECTS = 'PROJECTS',
-  MUSIC = 'MUSIC',
 }
 
 export function NavBar({ className }: NavBarProps): React.JSX.Element {

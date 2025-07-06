@@ -5,10 +5,8 @@ import { Button } from '@/components/ui/button';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useTranslations } from 'next-intl';
 
-import { Download } from 'lucide-react';
 import React from 'react';
 import tw from 'tailwind-styled-components';
-import { Macaron } from '../Macaron';
 import { NavKeys } from '../Navbar';
 
 interface FooterProps {
@@ -40,17 +38,7 @@ const socialLinks = [
 
 export function Footer({ className }: FooterProps): React.JSX.Element {
   const t = useTranslations('common');
-  const { trackButtonClick, trackDownload } = useAnalytics();
-
-  const handleDownloadCV = () => {
-    trackDownload('Noe_Philippe_CV', 'pdf');
-    const link = document.createElement('a');
-    link.href = '/CV.pdf';
-    link.download = 'Noe_Philippe_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const { trackButtonClick } = useAnalytics();
 
   const handleSocialLinkClick = (analyticsLabel: string) => {
     trackButtonClick(analyticsLabel);
@@ -62,8 +50,6 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
 
   return (
     <Main className={className} id={NavKeys.CONTACT}>
-      <Macaron enableScrollRotation={true} id='macaron-footer' />
-
       <RowBetween className='flex-col md:flex-row w-full mt-15'>
         {/* Social Links */}
         <Col className='flex-row md:flex-col mt-10 md:mt-0 justify-between md:justify-start md:gap-3 order-2 md:order-1'>
@@ -100,14 +86,6 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
                 {t('generics.sendEmail')}
               </Button>
             </a>
-            <Button
-              onClick={handleDownloadCV}
-              className='w-full md:w-fit'
-              variant='outline'
-            >
-              <Download className='mr-2 w-4 h-4' />
-              {t('generics.downloadCV')}
-            </Button>
           </Row>
         </Col>
       </RowBetween>

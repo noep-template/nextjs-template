@@ -20,7 +20,7 @@ export function SeoHead({
   const canonicalPath = pathname.split('?')[0];
   const domain = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/+$/, '');
   const url = `${domain}${canonicalPath === '/' ? '' : canonicalPath}`;
-  const image = `${domain}/og.jpg`;
+  const image = `${domain}/og.jpeg`;
 
   // fallbacks from i18n
   const title =

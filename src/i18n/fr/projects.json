@@ -1,74 +1,11 @@
 {
-  "sakana-san": {
-    "title": "Sakana San",
-    "description": "Projet réalisé en freelance pour <a>Sakana San</a> (Louis Renier), artiste tatoueur basé à Pont l'Abbé, dans le Finistère. L'objectif était de concevoir un site vitrine moderne, responsive et bilingue, permettant de valoriser ses créations (tatouages, dessins, t-shirts, musique) tout en affirmant son identité artistique. Le projet comprend également un backoffice personnalisé et minimaliste, accessible depuis mobile, lui permettant de gérer de manière autonome ses contenus, ses événements et les mises à jour de sa page d'accueil.<br></br><br></br>Le site a été pensé mobile-first et optimisé pour le référencement naturel. L'ensemble a été déployé sur un serveur VPS via Docker Compose, et intègre un suivi de fréquentation via Google Analytics.",
+  "exemple-project": {
+    "title": "Exemple de Projet",
+    "description": "Ceci est un exemple de projet pour illustrer la structure du fichier JSON.",
     "metas": {
-      "title": "Sakana San — Site Vitrine d'Artiste Tatoueur | Noé Philippe",
-      "description": "Découvre le site vitrine bilingue et responsive de Sakana San, artiste tatoueur à Pont l'Abbé. Un projet freelance mêlant design moderne, backoffice personnalisé et optimisation SEO.",
-      "keywords": "site vitrine artiste, tatoueur Finistère, développement web freelance, design responsive, backoffice personnalisé, optimisation SEO, Docker Compose"
-    }
-  },
-  "tildev": {
-    "title": "Tildev",
-    "description": "Projet freelance pour <a>Tildev</a>, entreprise spécialisée dans le développement de solutions de gestion de fiches bilan dématérialisées pour le secteur de la santé. J'ai réalisé le site vitrine de l'entreprise ainsi que celui de leur solution phare Syopé, une plateforme de gestion d'interventions utilisée par plus de 635 organismes et établissements. Le projet comprenait également la maintenance de leurs différentes solutions, notamment eFiBi, un système de gestion des victimes développé en collaboration avec la BSPP.<br></br><br></br>Durant ces trois semaines, j'ai mis en place une architecture moderne et évolutive, tout en assurant la compatibilité avec les systèmes existants. Le site vitrine a été conçu pour mettre en valeur l'expertise de Tildev dans le domaine de la santé et de l'informatique, tout en présentant clairement leurs solutions innovantes.",
-    "metas": {
-      "title": "Tildev — Solutions de Gestion de Fiches Bilan | Noé Philippe",
-      "description": "Découvre le site vitrine de Tildev et leurs solutions innovantes pour la gestion de fiches bilan dématérialisées. Un projet freelance mêlant développement web et maintenance de solutions de santé.",
-      "keywords": "Tildev, Syopé, eFiBi, gestion de fiches bilan, dématérialisation santé, développement web freelance, maintenance applicative, BSPP"
-    }
-  },
-  "kerluskellik": {
-    "title": "Kerluskellik",
-    "description": "Projet freelance pour <a>Kerluskellik</a>, une maison de caractère située sur l'île de Batz. J'ai développé un site vitrine moderne et responsive permettant de présenter cette magnifique maison de capitaine au long cours, exposée Sud et face à la mer. Le site met en valeur les différentes pièces, les équipements disponibles et les tarifs de location.<br></br><br></br>Le projet comprend une interface utilisateur intuitive avec une galerie photo, une carte interactive, et un système de témoignages. Le site a été optimisé pour le référencement naturel et offre une expérience utilisateur fluide sur tous les appareils.",
-    "metas": {
-      "title": "Kerluskellik — Location de Maison sur l'Île de Batz | Noé Philippe",
-      "description": "Découvre le site vitrine de Kerluskellik, une magnifique maison de caractère à louer sur l'île de Batz. Un projet freelance mêlant design moderne et présentation de biens immobiliers.",
-      "keywords": "location île de Batz, maison de caractère, location vacances Finistère, développement web freelance, site vitrine immobilier, optimisation SEO"
-    }
-  },
-  "romane-faupin": {
-    "title": "Romane Faupin",
-    "description": "Projet freelance pour <a>Romane Faupin</a>, artiste peintre et illustratrice basée à Paris. J'ai développé un site vitrine moderne et responsive pour présenter son univers artistique unique, mêlant peinture, illustration et gravure. Le site met en valeur son portfolio, ses expositions et ses collaborations.<br></br><br></br>Le projet comprend une galerie d'œuvres interactive, une section actualités pour ses expositions, et une présentation détaillée de son parcours artistique. Le site a été conçu pour offrir une expérience immersive qui reflète la sensibilité artistique de Romane.",
-    "metas": {
-      "title": "Romane Faupin — Site Vitrine d'Artiste Peintre | Noé Philippe",
-      "description": "Découvre le site vitrine de Romane Faupin, artiste peintre et illustratrice à Paris. Un projet freelance mêlant design moderne et présentation d'œuvres d'art.",
-      "keywords": "artiste peintre, illustration, gravure, site vitrine artiste, développement web freelance, design responsive, portfolio artistique"
-    }
-  },
-  "fast-foodie": {
-    "title": "Fast&Foodie",
-    "description": "Application web mobile-friendly pour la gestion des repas et des courses, mettant l'accent sur la simplicité et le gain de temps. Le projet comprend une gestion complète des plats avec photos et recettes, une planification des repas de la semaine, et une liste de courses interactive organisée par rayons.<br></br><br></br>Développée avec Next.js, TypeScript et TailwindCSS, l'application offre une interface utilisateur intuitive avec des modales glissantes et une navigation par tab bar. La base de données PostgreSQL assure la persistance des données, tandis que les composants UI de Tanstack et Shadcn garantissent une expérience utilisateur moderne et réactive.",
-    "metas": {
-      "title": "Fast&Foodie — Application de Gestion des Repas | Noé Philippe",
-      "description": "Découvre Fast&Foodie, une application web moderne pour la gestion des repas et des courses. Un projet combinant design mobile-first et fonctionnalités pratiques.",
-      "keywords": "gestion des repas, liste de courses, application web, Next.js, TypeScript, TailwindCSS, PostgreSQL, design mobile-first"
-    }
-  },
-  "iggy": {
-    "title": "Iggy",
-    "description": "Projet de fin d'études pour mon Master en Management de Projet Digitaux. Iggy est une application mobile dédiée au bien-être animal, permettant aux familles de gérer efficacement les soins de leurs animaux de compagnie. L'application facilite la coordination entre parents et enfants pour les tâches quotidiennes liées aux animaux, tout en offrant un suivi de leur bien-être.<br></br><br></br>Développée avec React Native (Expo) et NestJS, l'application comprend également un back-office Next.js pour la gestion administrative. Le projet met l'accent sur la sécurité des données personnelles avec un chiffrement poussé, et utilise Docker pour la conteneurisation. L'architecture technique a été soigneusement pensée pour assurer une expérience utilisateur fluide et une maintenance simplifiée.",
-    "metas": {
-      "title": "Iggy — Application de Gestion du Bien-être Animal | Noé Philippe",
-      "description": "Découvre Iggy, une application mobile innovante pour la gestion du bien-être animal en famille. Un projet de fin d'études combinant design mobile et sécurité des données.",
-      "keywords": "bien-être animal, application mobile, React Native, NestJS, Next.js, Docker, sécurité des données, projet de fin d'études"
-    }
-  },
-  "perdus-en-foret": {
-    "title": "Perdus en Forêt",
-    "description": "Projet de fin d'études pour ma Licence Pro Développement Web et Mobile à la Sorbonne. Perdus en Forêt est une application mobile et web permettant de répertorier les points de secours sur les chemins de randonnée. L'objectif est de réduire le temps d'intervention des secours en cas d'accident.<br></br><br></br>Développée avec React Native et Firebase, l'application intègre une carte Google Maps interactive, un système d'authentification robuste, et une synchronisation en temps réel avec Redux. Le projet a été réalisé en suivant les méthodes agiles (Scrum) avec une équipe de développeurs, incluant des revues de code régulières et du pair programming.",
-    "metas": {
-      "title": "Perdus en Forêt — Application de Sécurité en Randonnée | Noé Philippe",
-      "description": "Découvre Perdus en Forêt, une application mobile et web pour la sécurité des randonneurs. Un projet de fin d'études combinant cartographie et gestion des secours.",
-      "keywords": "sécurité randonnée, application mobile, React Native, Firebase, Google Maps, Redux, Scrum, pair programming"
-    }
-  },
-  "bob-le-developpeur": {
-    "title": "Bob le Développeur",
-    "description": "Projet réalisé en équipe chez <a>Bob le Développeur</a>, une agence web parisienne spécialisée dans la création d'applications sur-mesure pour des clients variés. J'ai participé à la conception et au développement de plateformes web et mobiles pour des clients majeurs, en front comme en back, en collaboration avec des équipes pluridisciplinaires.<br></br><br></br>Voici quelques projets phares réalisés :<ul><li><b>Athome</b> : Digitalisation des process internes et création de plateformes en ligne pour la gestion de projets de rénovation énergétique. Outils sur-mesure pour automatiser et simplifier la gestion des clients et des chantiers.</li><li><b>Racing Club de Strasbourg</b> : Application collaborative pour connecter les acteurs locaux, promouvoir les offres et faciliter la communication entre entreprises partenaires autour du club.</li><li><b>Surge</b> : Développement d'outils d'analyse et de visualisation pour la médecine prédictive, en collaboration avec des experts médicaux pour transformer des besoins métiers complexes en solutions logicielles innovantes.</li><li><b>Alfred</b> : Plateforme de coaching financier pour le Groupe Pluralle, permettant aux utilisateurs d'optimiser leur fiscalité et de gérer leurs projets financiers grâce à une expérience utilisateur fluide et personnalisée.</li><li><b>Allocab</b> : Refonte complète du site du 1er réseau de VTC en France, avec génération de milliers de pages statiques et optimisation du parcours client pour des dizaines de milliers d'utilisateurs quotidiens.</li></ul><br></br>Chaque projet a été l'occasion de travailler sur des architectures modernes (Next.js, NestJS, React Native, Docker, PostgreSQL), d'assurer la qualité technique, la sécurité et la performance, tout en collaborant étroitement avec les clients et les équipes pour répondre à des besoins métiers exigeants.",
-    "metas": {
-      "title": "Bob le Développeur — Réalisations d'agence sur-mesure | Noé Philippe",
-      "description": "Découvre les projets réalisés chez Bob le Développeur : plateformes web, applications mobiles et outils métiers pour des clients majeurs. Un travail d'équipe mêlant expertise technique, innovation et gestion de projet.",
-      "keywords": "Bob le Développeur, agence web, développement sur-mesure, Next.js, NestJS, React Native, Docker, PostgreSQL, digitalisation, gestion de projet, applications web, applications mobiles, clients majeurs"
+      "title": "Exemple de Projet — Noé Philippe",
+      "description": "Description de l'exemple de projet pour démonstration.",
+      "keywords": "exemple, projet, démonstration"
     }
   }
 }

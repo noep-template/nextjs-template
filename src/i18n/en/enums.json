@@ -2,22 +2,5 @@
   "HOME": "Home",
   "CONTACT": "Contact",
   "MENU": "Menu",
-  "ABOUT": "About",
-  "PROJECTS": "Projects",
-  "MUSIC": "Music",
-  "FREELANCE": "Freelance",
-  "PERSONAL": "Personal",
-  "WORK": "Work",
-  "SCHOOL": "School",
-  "TRAVEL": "Travel",
-  "NEXTJS": "Next.js",
-  "TYPESCRIPT": "TypeScript",
-  "TAILWIND": "Tailwind CSS",
-  "NESTJS": "Nest.js",
-  "REACT_NATIVE": "React Native",
-  "ANIMATION": "Animation",
-  "DOCKER": "Docker",
-  "POSTGRESQL": "PostgreSQL",
-  "GSAP": "GSAP",
-  "PROG_WEB_APP": "Progressive Web App"
+  "PROJECTS": "Projects"
 }
