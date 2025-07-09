@@ -11,7 +11,12 @@
     "privacyPolicy": "Privacy Policy"
   },
   "home": {
-    "name": "Home Page"
+    "name": "Example Image Gallery",
+    "description": "Click on an image to open it in fullscreen. Use the arrows or dots to navigate.",
+    "fullscreen": "View in Fullscreen"
+  },
+  "projects": {
+    "name": "Discover my projects"
   },
   "status": "Available for work",
   "position": "Fullstack Developer",

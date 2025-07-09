@@ -5,11 +5,13 @@ import { ROUTES } from '@/services/routes';
 import { cn } from '@/services/utils';
 import { projects } from '@/static/projects';
 import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { Layout } from '../utils/Layout';
 
 export function ProjectsPage(): React.JSX.Element {
   const router = useRouter();
+  const tCommons = useTranslations('common');
 
   return (
     <Layout>
@@ -19,7 +21,7 @@ export function ProjectsPage(): React.JSX.Element {
           'w-full h-screen items-center justify-center'
         )}
       >
-        <h1 className={TEXT_CLASSES.h1}>{'Projects Page'}</h1>
+        <h1 className={TEXT_CLASSES.h1}>{tCommons('projects.name')}</h1>
         {projects.map((project) => (
           <Button
             key={project.slug}
