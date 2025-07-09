@@ -24,6 +24,12 @@ show_help() {
     echo "  -e, --email       Email de l'auteur"
     echo "  -h, --help        Afficher cette aide"
     echo ""
+    echo "Le script met à jour:"
+    echo "  - package.json, README.md, Dockerfile"
+    echo "  - docker-compose.yml, scripts/"
+    echo "  - GitHub Actions workflows"
+    echo "  - Fichiers /public (manifest.json, sitemap.xml, robots.txt)"
+    echo ""
     echo "Exemples:"
     echo "  $0 --name my-nextjs-app --description 'Mon application Next.js'"
     echo "  $0 -n my-nextjs-app -d 'Mon application' -a 'John Doe' -e 'john@example.com'"
@@ -143,6 +149,38 @@ fi
 if [ -f "Dockerfile" ]; then
     echo "🐳 Mise à jour du Dockerfile..."
     sed -i '' "s/nextjs-template/${PROJECT_NAME}/g" Dockerfile
+fi
+
+# Mettre à jour les fichiers dans /public
+echo "📁 Mise à jour des fichiers dans /public..."
+
+# Mettre à jour manifest.json
+if [ -f "public/manifest.json" ]; then
+    echo "📱 Mise à jour manifest.json..."
+    # Capitaliser la première lettre du nom du projet pour l'affichage
+    PROJECT_NAME_CAPITALIZED=$(echo "$PROJECT_NAME" | sed 's/^./\U&/')
+    sed -i '' "s/\"name\": \"Next\.js Template \| Portfolio\"/\"name\": \"$PROJECT_NAME_CAPITALIZED\"/" public/manifest.json
+    sed -i '' "s/\"short_name\": \"Next\.js Template \| Portfolio\"/\"short_name\": \"$PROJECT_NAME_CAPITALIZED\"/" public/manifest.json
+fi
+
+# Demander le domaine pour les fichiers de configuration
+echo ""
+read -p "🌐 Entrez le domaine de votre site (ex: mon-site.com): " DOMAIN
+if [ -z "$DOMAIN" ]; then
+    DOMAIN="your-domain.com"
+    echo "ℹ️  Utilisation du domaine par défaut: $DOMAIN"
+fi
+
+# Mettre à jour sitemap.xml
+if [ -f "public/sitemap.xml" ]; then
+    echo "🗺️  Mise à jour sitemap.xml..."
+    sed -i '' "s|https://your-domain.com|https://$DOMAIN|g" public/sitemap.xml
+fi
+
+# Mettre à jour robots.txt
+if [ -f "public/robots.txt" ]; then
+    echo "🤖 Mise à jour robots.txt..."
+    sed -i '' "s|https://your-domain.com|https://$DOMAIN|g" public/robots.txt
 fi
 
 # Créer le fichier .env.local si il n'existe pas

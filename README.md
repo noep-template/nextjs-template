@@ -19,14 +19,15 @@ Un template Next.js moderne et complet avec TypeScript, Tailwind CSS, internatio
 
 ## 🛠️ Technologies
 
-- [Next.js 15](https://nextjs.org/) - Framework React
-- [TypeScript](https://www.typescriptlang.org/) - Typage statique
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
-- [next-intl](https://next-intl-docs.vercel.app/) - Internationalisation
-- [shadcn/ui](https://ui.shadcn.com/) - Composants UI
-- [GSAP](https://greensock.com/gsap/) - Animations
-- [Lucide React](https://lucide.dev/) - Icônes
+- [Next.js 15.3.5](https://nextjs.org/) - Framework React
+- [React 19.1.0](https://react.dev/) - Bibliothèque UI
+- [TypeScript 5](https://www.typescriptlang.org/) - Typage statique
+- [Tailwind CSS 3.4.17](https://tailwindcss.com/) - Framework CSS
+- [next-intl 4.1.0](https://next-intl-docs.vercel.app/) - Internationalisation
+- [GSAP 3.12.7](https://greensock.com/gsap/) - Animations
+- [Lucide React 0.525.0](https://lucide.dev/) - Icônes
 - [Radix UI](https://www.radix-ui.com/) - Composants primitifs
+- [shadcn/ui](https://ui.shadcn.com/) - Composants UI
 
 ## 🚀 Démarrage rapide
 
@@ -111,13 +112,14 @@ Modifiez `tailwind.config.ts` pour personnaliser :
 Les composants sont dans `src/components/` :
 
 - `ui/` - Composants shadcn/ui
-- `Layout/` - Composants de mise en page
+- `pages/` - Pages de l'application
+- `utils/` - Utilitaires (SEO, Layout, etc.)
 - `Medias/` - Composants média
-- `Texts/` - Composants texte
+- `Loaders/` - Composants de chargement
 
 ### Pages
 
-Les pages sont dans `src/container/pages/` :
+Les pages sont dans `src/components/pages/` :
 
 - `HomePage.tsx` - Page d'accueil
 - `ProjectsPage.tsx` - Page projets
@@ -136,12 +138,22 @@ Les pages sont dans `src/container/pages/` :
 Les métadonnées sont configurées dans :
 
 - `src/services/metadata.ts` - Métadonnées globales
-- `src/container/components/SeoHead/` - Composant SEO
+- `src/components/utils/SeoHead.tsx` - Composant SEO
 - `public/manifest.json` - PWA manifest
 
 ## 🐳 Déploiement
 
 ### Docker
+
+Le projet inclut une configuration Docker complète :
+
+```bash
+# Construire l'image
+docker build -t nextjs-template .
+
+# Démarrer avec Docker Compose
+docker-compose up -d
+```
 
 ### GitHub Actions
 
@@ -155,19 +167,17 @@ Le workflow `.github/workflows/deploy.yml` :
 
 ```
 src/
-├── app/                 # App Router (Next.js 13+)
+├── app/                 # App Router (Next.js 15+)
 │   └── [locale]/       # Routes internationalisées
 ├── components/          # Composants réutilisables
 │   ├── ui/             # Composants shadcn/ui
-│   ├── Layout/         # Composants de mise en page
-│   └── ...
-├── container/           # Conteneurs et pages
-│   ├── components/     # Composants spécifiques aux pages
-│   └── pages/          # Pages de l'application
+│   ├── pages/          # Pages de l'application
+│   ├── utils/          # Utilitaires (SEO, Layout, etc.)
+│   ├── Medias/         # Composants média
+│   └── Loaders/        # Composants de chargement
 ├── contexts/           # Contextes React
 ├── hooks/              # Hooks personnalisés
 ├── i18n/               # Internationalisation
-├── lib/                # Utilitaires et configurations
 ├── services/           # Services (métadonnées, etc.)
 ├── static/             # Données statiques
 └── types/              # Types TypeScript
