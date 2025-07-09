@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
-/** @type {import('tailwindcss').Config} */
 
-const sizesList = {
+// Système de tailles personnalisées
+const spacing = {
   2: '0.5rem',
   3: '0.75rem',
   4: '1rem',
@@ -59,8 +59,8 @@ const sizesList = {
   70: '17.5rem',
   72: '18rem',
   74: '18.5rem',
-  82: '20.5rem',
   80: '20rem',
+  82: '20.5rem',
   84: '21rem',
   86: '21.5rem',
   89: '22.25rem',
@@ -125,6 +125,7 @@ const sizesList = {
   380: '95rem',
   384: '96rem',
   400: '100rem',
+  // Pourcentages
   '10%': '10%',
   '20%': '20%',
   '30%': '30%',
@@ -134,9 +135,46 @@ const sizesList = {
   '70%': '70%',
   '80%': '80%',
   '90%': '90%',
-};
+} as const;
 
-const config = {
+// Système de couleurs
+const colors = {
+  border: 'hsl(var(--border))',
+  input: 'hsl(var(--input))',
+  ring: 'hsl(var(--ring))',
+  background: 'hsl(var(--background))',
+  foreground: 'hsl(var(--foreground))',
+  primary: {
+    DEFAULT: 'hsl(var(--primary))',
+    foreground: 'hsl(var(--primary-foreground))',
+  },
+  secondary: {
+    DEFAULT: 'hsl(var(--secondary))',
+    foreground: 'hsl(var(--secondary-foreground))',
+  },
+  destructive: {
+    DEFAULT: 'hsl(var(--destructive))',
+    foreground: 'hsl(var(--destructive-foreground))',
+  },
+  muted: {
+    DEFAULT: 'hsl(var(--muted))',
+    foreground: 'hsl(var(--muted-foreground))',
+  },
+  accent: {
+    DEFAULT: 'hsl(var(--accent))',
+    foreground: 'hsl(var(--accent-foreground))',
+  },
+  popover: {
+    DEFAULT: 'hsl(var(--popover))',
+    foreground: 'hsl(var(--popover-foreground))',
+  },
+  card: {
+    DEFAULT: 'hsl(var(--card))',
+    foreground: 'hsl(var(--card-foreground))',
+  },
+} as const;
+
+const config: Config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -144,7 +182,6 @@ const config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
-  prefix: '',
   theme: {
     container: {
       center: true,
@@ -154,78 +191,24 @@ const config = {
       },
     },
     extend: {
-      minWidth: { ...sizesList },
-      minHeight: { ...sizesList },
-      maxHeight: { ...sizesList },
-      maxWidth: { ...sizesList },
-      spacing: {
-        ...sizesList,
-      },
+      // Système de tailles
+      spacing,
+      minWidth: spacing,
+      minHeight: spacing,
+      maxHeight: spacing,
+      maxWidth: spacing,
+
+      // Typographie
       fontFamily: {
         title: ['var(--font-dela)', 'sans-serif'],
         mono: ['var(--font-monda)', 'Monda', 'Roboto Mono', 'monospace'],
       },
-      colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-      },
-      animation: {
-        'spin-slow': 'spin 8s linear infinite',
-        'spin-fast-once': 'spin 0.5s linear 1',
-        floatingGradient: 'floating 40s ease-in-out infinite',
-        fadeInUp: 'fadeInUp 0.6s ease-out forwards',
-      },
-      keyframes: {
-        floating: {
-          '0%': { transform: 'translate(0%, 0%) scale(1)' },
-          '25%': { transform: 'translate(40%, -10%) scale(1.3)' },
-          '50%': { transform: 'translate(20%, 30%) scale(1.5)' },
-          '75%': { transform: 'translate(-20%, 10%) scale(1.1)' },
-          '100%': { transform: 'translate(0%, 0%) scale(1)' },
-        },
-        spin: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
-        },
-        fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-      },
+
+      // Couleurs
+      colors,
     },
   },
   plugins: [require('tailwindcss-animate')],
-} satisfies Config;
+};
 
 export default config;

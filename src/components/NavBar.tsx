@@ -45,7 +45,13 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
 
   // verrouillage du scroll mobile
   useEffect(() => {
-    isMobile ? (isMenuOpen ? lock() : unlock()) : undefined;
+    if (isMobile) {
+      if (isMenuOpen) {
+        lock();
+      } else {
+        unlock();
+      }
+    }
   }, [isMenuOpen, isMobile, lock, unlock]);
 
   // fermer le menu si clic à l'extérieur

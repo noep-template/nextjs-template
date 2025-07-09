@@ -66,7 +66,11 @@ export function Layout(props: LayoutProps): React.JSX.Element {
     <div className={cn(FLEX_CLASSES.col, LAYOUT_CLASSES.container)}>
       <NavBar />
       <LanguageSwitcher />
-      <Page className={className}>{children}</Page>
+      {className ? (
+        <Page className={className}>{children}</Page>
+      ) : (
+        <Page>{children}</Page>
+      )}
       <Footer />
     </div>
   );
@@ -78,5 +82,5 @@ interface PageProps {
 }
 
 const Page = ({ children, className }: PageProps) => (
-  <div className={cn(LAYOUT_CLASSES.page, className)}>{children}</div>
+  <div className={cn(LAYOUT_CLASSES.page, className || '')}>{children}</div>
 );

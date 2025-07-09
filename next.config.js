@@ -1,23 +1,32 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 
-// 1. Importez directement la fonction du plugin (pas de .default)
 const createNextIntlPlugin = require('next-intl/plugin');
 
-// 2. Passez le chemin vers votre fichier de messages ou dossier i18n
-//    Ici, on pointe sur votre fichier src/i18n/i18n.ts qui exporte l'objet `messages`
-const withNextIntl = createNextIntlPlugin('./src/i18n/config.ts'); // :contentReference[oaicite:0]{index=0}
+const withNextIntl = createNextIntlPlugin('./src/i18n/config.ts');
 
-// 3. Déclarez votre configuration Next.js
 const nextConfig = {
+  // Optimisations de performance
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'gsap'],
+  },
+
+  // Configuration de build
   staticPageGenerationTimeout: 20000,
   output: 'standalone',
-  modularizeImports: {},
   compress: true,
+
+  // Optimisations d'images
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 31536000, // 1 an
+  },
+
+  // Headers de sécurité et cache
   async headers() {
     return [
       {
-        source: '/(.*)\\.(js|css|png|jpg|svg)',
+        source: '/(.*)\\.(js|css|png|jpg|jpeg|svg|webp|avif|ico|woff|woff2)',
         headers: [
           {
             key: 'Cache-Control',
@@ -30,7 +39,8 @@ const nextConfig = {
         headers: [
           {
             key: 'Permissions-Policy',
-            value: 'interest-cohort=()',
+            value:
+              'interest-cohort=(), camera=(), microphone=(), geolocation=()',
           },
           {
             key: 'X-Content-Type-Options',
@@ -44,11 +54,14 @@ const nextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
         ],
       },
     ];
   },
 };
 
-// 4. Exposez la config étendue par next-intl
-module.exports = withNextIntl(nextConfig); // :contentReference[oaicite:2]{index=2}
+module.exports = withNextIntl(nextConfig);
