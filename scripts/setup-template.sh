@@ -99,7 +99,7 @@ echo "🔧 Mise à jour des fichiers..."
 if [ -f "package.json" ]; then
     echo "📦 Mise à jour package.json..."
     sed -i '' "s/\"name\": \"portfolio\"/\"name\": \"$PROJECT_NAME\"/" package.json
-    sed -i '' "s/\"name\": \"nextjs-template\"/\"name\": \"$PROJECT_NAME\"/" package.json
+    sed -i '' "s/\"name\": \"hello\"/\"name\": \"$PROJECT_NAME\"/" package.json
     # Ajouter la description si elle n'existe pas
     if ! grep -q '"description"' package.json; then
         # Ajouter la description après la ligne "private": true
@@ -121,34 +121,34 @@ fi
 # Mettre à jour docker-compose.yml
 if [ -f "docker-compose.yml" ]; then
     echo "🐳 Mise à jour docker-compose.yml..."
-    sed -i '' "s/nextjs-template/${PROJECT_NAME}/g" docker-compose.yml
+    sed -i '' "s/hello/${PROJECT_NAME}/g" docker-compose.yml
 fi
 
 # Mettre à jour les scripts
 echo "📜 Mise à jour des scripts..."
-find scripts/ -name "*.sh" -type f -exec sed -i '' "s/nextjs-template/${PROJECT_NAME}/g" {} \;
+find scripts/ -name "*.sh" -type f -exec sed -i '' "s/hello/${PROJECT_NAME}/g" {} \;
 
 # Mettre à jour le workflow GitHub Actions
 if [ -f ".github/workflows/deploy.yml" ]; then
     echo "⚙️  Mise à jour du workflow GitHub Actions..."
-    sed -i '' "s/nextjs-template/${PROJECT_NAME}/g" .github/workflows/deploy.yml
+    sed -i '' "s/hello/${PROJECT_NAME}/g" .github/workflows/deploy.yml
     # Mettre à jour le chemin du répertoire sur le serveur
-    sed -i '' "s|~/nextjs-template|~/$(echo $PROJECT_NAME | tr '-' '_')|g" .github/workflows/deploy.yml
+    sed -i '' "s|~/hello|~/$(echo $PROJECT_NAME | tr '-' '_')|g" .github/workflows/deploy.yml
 fi
 
 # Mettre à jour le README
 if [ -f "README.md" ]; then
     echo "📖 Mise à jour du README..."
     # Capitaliser la première lettre du nom du projet
-    PROJECT_NAME_CAPITALIZED=$(echo "$PROJECT_NAME" | sed 's/^./\U&/')
+    PROJECT_NAME_CAPITALIZED=$(echo "$PROJECT_NAME" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
     sed -i '' "s/This is a \[Next\.js\].*project bootstrapped with.*/This is a [Next.js](https:\/\/nextjs.org\/) project: $PROJECT_NAME_CAPITALIZED/" README.md
-    sed -i '' "s/nextjs-template/${PROJECT_NAME}/g" README.md
+    sed -i '' "s/hello/${PROJECT_NAME}/g" README.md
 fi
 
 # Mettre à jour le Dockerfile si il existe
 if [ -f "Dockerfile" ]; then
     echo "🐳 Mise à jour du Dockerfile..."
-    sed -i '' "s/nextjs-template/${PROJECT_NAME}/g" Dockerfile
+    sed -i '' "s/hello/${PROJECT_NAME}/g" Dockerfile
 fi
 
 # Mettre à jour les fichiers dans /public
@@ -158,7 +158,7 @@ echo "📁 Mise à jour des fichiers dans /public..."
 if [ -f "public/manifest.json" ]; then
     echo "📱 Mise à jour manifest.json..."
     # Capitaliser la première lettre du nom du projet pour l'affichage
-    PROJECT_NAME_CAPITALIZED=$(echo "$PROJECT_NAME" | sed 's/^./\U&/')
+    PROJECT_NAME_CAPITALIZED=$(echo "$PROJECT_NAME" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
     sed -i '' "s/\"name\": \"Next\.js Template \| Portfolio\"/\"name\": \"$PROJECT_NAME_CAPITALIZED\"/" public/manifest.json
     sed -i '' "s/\"short_name\": \"Next\.js Template \| Portfolio\"/\"short_name\": \"$PROJECT_NAME_CAPITALIZED\"/" public/manifest.json
 fi
