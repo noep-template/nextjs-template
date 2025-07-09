@@ -39,6 +39,28 @@ clean-merged-branches: ## Supprime les branches mergées
 
 #-- UTILITAIRES
 setup: ## Configure le template pour un nouveau projet
+	@echo "🚀 Configuration du template Next.js..."
+	@echo ""
+	@read -p "Nom du projet (obligatoire): " project_name; \
+	read -p "Description du projet: " project_desc; \
+	read -p "Nom de l'auteur: " author_name; \
+	read -p "Email de l'auteur: " author_email; \
+	echo ""; \
+	echo "Configuration:"; \
+	echo "  Nom: $$project_name"; \
+	echo "  Description: $$project_desc"; \
+	echo "  Auteur: $$author_name"; \
+	echo "  Email: $$author_email"; \
+	echo ""; \
+	read -p "Continuer? (y/N): " confirm; \
+	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
+		./scripts/setup-template.sh --name "$$project_name" --description "$$project_desc" --author "$$author_name" --email "$$author_email"; \
+	else \
+		echo "❌ Configuration annulée"; \
+	fi
+
+setup.help: ## Affiche l'aide pour la configuration
 	@echo "Configuration du template..."
-	@echo "Utilisez : ./scripts/setup-template.sh --name nom-projet --description 'Description' --author 'Auteur' --email 'email@example.com'"
+	@echo "Utilisez : make setup"
+	@echo "Ou directement : ./scripts/setup-template.sh --name nom-projet --description 'Description' --author 'Auteur' --email 'email@example.com'"
 
