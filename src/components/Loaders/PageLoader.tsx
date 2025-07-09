@@ -1,8 +1,8 @@
 'use client';
+import { cn } from '@/services/utils';
+import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
 import { useEffect, useState } from 'react';
-import tw from 'tailwind-styled-components';
-import { ColCenter } from '../Helpers';
-import { P24 } from '../Texts';
+import { Logo } from '../Medias/Logo';
 
 interface PageLoaderProps {
   className?: string;
@@ -22,29 +22,26 @@ export function PageLoader(props: PageLoaderProps): JSX.Element {
   }, []);
 
   return (
-    <Main className={className}>
+    <div
+      className={cn(
+        'flex flex-col items-center justify-center h-screen w-full relative',
+        className
+      )}
+    >
       {showLoader ? (
-        <ColCenter className='py-10 h-full justify-between'>
-          <Logo src='/icons/logo_128x128.webp' alt='logo' />
-          <P24 className='uppercase'>{'Sakana San'}</P24>
-        </ColCenter>
+        <div
+          className={cn(FLEX_CLASSES.colCenter, 'py-10 h-full justify-between')}
+        >
+          <Logo
+            src='/icons/logo_128x128.webp'
+            alt='Logo Sakana San'
+            size={60}
+            className='w-15 h-15'
+            priority
+          />
+          <p className={cn(TEXT_CLASSES.p24, 'uppercase')}>{'Sakana San'}</p>
+        </div>
       ) : null}
-    </Main>
+    </div>
   );
 }
-
-const Main = tw.div`
-  flex
-  flex-col
-  items-center
-  justify-center
-  h-screen
-  w-full
-  relative
-`;
-
-const Logo = tw.img`
-  rounded
-  w-15
-  h-15
-`;

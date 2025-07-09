@@ -1,9 +1,9 @@
 // app/layout.tsx (mise à jour)
 'use client';
 
-import { CookieConsent } from '@/components/CookieConsent';
-import GoogleAnalyticsComponent from '@/components/GoogleAnalytics';
-import { AppProvider } from '@/contexts';
+import { CookieConsent } from '@/components/utils/CookieConsent';
+import GoogleAnalyticsComponent from '@/components/utils/GoogleAnalytics';
+import { AppProvider } from '@/contexts/AppContext';
 import { Locale, messages } from '@/i18n/config';
 import { IntlProvider } from 'next-intl';
 import { Dela_Gothic_One, Monda } from 'next/font/google';

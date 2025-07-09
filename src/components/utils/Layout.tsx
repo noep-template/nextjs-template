@@ -1,12 +1,16 @@
 'use client';
-import { Footer, NavBar } from '@/container/components';
 import { cn } from '@/services/utils';
+import {
+  FLEX_CLASSES,
+  INTERACTION_CLASSES,
+  LAYOUT_CLASSES,
+  TEXT_CLASSES,
+} from '@/static/styles/tailwind-classes';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { ReactNode } from 'react';
-import tw from 'tailwind-styled-components';
-import { Col, Row } from '../Helpers';
-import { P16 } from '../Texts';
+import { Footer } from '../Footer';
+import { NavBar } from '../NavBar';
 
 const LanguageSwitcher = () => {
   const locale = useLocale();
@@ -24,50 +28,55 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <Row className='hidden md:flex absolute z-40 gap-1 top-5 right-10'>
+    <div className={cn(FLEX_CLASSES.row, INTERACTION_CLASSES.languageSwitcher)}>
       {['Fr', 'En'].map((lang) => (
         <React.Fragment key={lang}>
-          <P16
+          <p
             className={cn(
-              'cursor-pointer transition duration-300',
+              TEXT_CLASSES.p16,
+              INTERACTION_CLASSES.languageButton,
               locale === lang.toLocaleLowerCase()
-                ? 'text-primary'
-                : 'text-foreground/50 hover:text-foreground/80'
+                ? INTERACTION_CLASSES.languageActive
+                : INTERACTION_CLASSES.languageInactive
             )}
             onClick={() => handleLanguageChange(lang.toLocaleLowerCase())}
           >
             {lang}
-          </P16>
-          {lang === 'Fr' && <P16 className='text-foreground/50'>{'/'}</P16>}
+          </p>
+          {lang === 'Fr' && (
+            <p className={cn(TEXT_CLASSES.p16, INTERACTION_CLASSES.separator)}>
+              {'/'}
+            </p>
+          )}
         </React.Fragment>
       ))}
-    </Row>
+    </div>
   );
 };
 
 interface LayoutProps {
   children?: ReactNode;
   className?: string;
-  isNavClose?: boolean;
 }
 
 export function Layout(props: LayoutProps): React.JSX.Element {
   const { children, className } = props;
 
   return (
-    <Col className='bg-background px-20'>
+    <div className={cn(FLEX_CLASSES.col, LAYOUT_CLASSES.container)}>
       <NavBar />
       <LanguageSwitcher />
       <Page className={className}>{children}</Page>
       <Footer />
-    </Col>
+    </div>
   );
 }
 
-const Page = tw.div`
-  flex
-  flex-col
-  items-center
-  min-h-screen
-  mb-5 md:mb-20
-`;
+interface PageProps {
+  children?: ReactNode;
+  className?: string;
+}
+
+const Page = ({ children, className }: PageProps) => (
+  <div className={cn(LAYOUT_CLASSES.page, className)}>{children}</div>
+);

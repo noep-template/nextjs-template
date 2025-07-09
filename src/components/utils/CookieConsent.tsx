@@ -1,9 +1,10 @@
 'use client';
 
-import { P14 } from '@/components/Texts';
 import { Button } from '@/components/ui/button';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useCookieConsent } from '@/hooks/useCookieConsent';
+import { cn } from '@/services/utils';
+import { TEXT_CLASSES } from '@/static/styles/tailwind-classes';
 import { useTranslations } from 'next-intl';
 
 export function CookieConsent() {
@@ -31,9 +32,9 @@ export function CookieConsent() {
     <div className='fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm text-foreground p-4 z-50 border-t border-border'>
       <div className='max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4'>
         <div className='flex-1'>
-          <P14 className='text-muted-foreground'>
+          <p className={cn(TEXT_CLASSES.p14, 'text-muted-foreground')}>
             {t('cookieConsent.description')}
-          </P14>
+          </p>
         </div>
         <div className='flex gap-3'>
           <Button

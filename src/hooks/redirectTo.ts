@@ -1,6 +1,6 @@
 'use client';
 
-import { MenuKeys } from '@/container/components';
+import { MenuKeys } from '@/components/NavBar';
 import { useAppContext } from '@/contexts';
 import { usePathname, useRouter } from 'next/navigation';
 

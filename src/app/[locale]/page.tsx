@@ -1,7 +1,7 @@
-import { HomePage } from '@/container/pages/HomePage';
+import { HomePage } from '@/components/pages/HomePage';
 import { getMessages, locales } from '@/i18n/config';
 import { defaultMetadata } from '@/services/metadata';
-import { PageBaseProps } from '@/types';
+import { PageBaseProps } from '@/types/next';
 import { Metadata } from 'next';
 
 export async function generateMetadata(

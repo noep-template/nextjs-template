@@ -1,4 +1,4 @@
-import { trackEvent } from '@/lib/analytics';
+import { trackEvent } from '@/services/analytics';
 import { useCallback } from 'react';
 
 export const useAnalytics = () => {

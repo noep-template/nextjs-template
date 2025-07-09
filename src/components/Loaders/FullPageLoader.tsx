@@ -1,4 +1,5 @@
-import { Layout, PageLoader } from '@/components';
+import { Layout } from 'lucide-react';
+import { PageLoader } from './PageLoader';
 
 interface LoaderProps {
   className?: string;

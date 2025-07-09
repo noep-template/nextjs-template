@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ProjectDetail } from '@/container/pages/ProjectDetail';
+import { ProjectDetail } from '@/components/pages/ProjectDetail';
 import { getMessages } from '@/i18n/config';
 import { defaultMetadata } from '@/services/metadata';
 import { projects } from '@/static/projects';
-import { PageBaseProps } from '@/types';
+import { PageBaseProps } from '@/types/next';
 import { Metadata } from 'next';
 
 export async function generateMetadata(

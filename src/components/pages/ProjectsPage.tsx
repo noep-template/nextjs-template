@@ -1,18 +1,25 @@
 /* eslint-disable indent */
 'use client';
-import { Col, H1, Layout } from '@/components';
 import { Button } from '@/components/ui/button';
-import { ROUTES } from '@/routes';
+import { ROUTES } from '@/services/routes';
+import { cn } from '@/services/utils';
 import { projects } from '@/static/projects';
+import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
 import { useRouter } from 'next/navigation';
+import { Layout } from '../utils/Layout';
 
 export function ProjectsPage(): React.JSX.Element {
   const router = useRouter();
 
   return (
-    <Layout isNavClose={false}>
-      <Col className='w-full h-screen items-center justify-center'>
-        <H1>{'Projects Page'}</H1>
+    <Layout>
+      <div
+        className={cn(
+          FLEX_CLASSES.col,
+          'w-full h-screen items-center justify-center'
+        )}
+      >
+        <h1 className={TEXT_CLASSES.h1}>{'Projects Page'}</h1>
         {projects.map((project) => (
           <Button
             key={project.slug}
@@ -23,7 +30,7 @@ export function ProjectsPage(): React.JSX.Element {
             {project.id}
           </Button>
         ))}
-      </Col>
+      </div>
     </Layout>
   );
 }

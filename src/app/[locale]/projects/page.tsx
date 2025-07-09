@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable indent */
-import { ProjectsPage } from '@/container/pages/ProjectsPage';
+import { ProjectsPage } from '@/components/pages/ProjectsPage';
 import { getMessages, locales } from '@/i18n/config';
 import { defaultMetadata } from '@/services/metadata';
-import { PageBaseProps } from '@/types';
+import { PageBaseProps } from '@/types/next';
 import { Metadata } from 'next';
 
 export async function generateStaticParams() {
