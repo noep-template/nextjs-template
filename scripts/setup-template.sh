@@ -28,7 +28,7 @@ show_help() {
     echo "  - package.json, README.md, Dockerfile"
     echo "  - docker-compose.yml, scripts/"
     echo "  - GitHub Actions workflows"
-    echo "  - Fichiers /public (manifest.json, sitemap.xml, robots.txt)"
+    echo "  - Fichiers /public (manifest.json, sitemap.xml, robots.txt, privacy-policy.html)"
     echo ""
     echo "Exemples:"
     echo "  $0 --name my-nextjs-app --description 'Mon application Next.js'"
@@ -181,6 +181,17 @@ fi
 if [ -f "public/robots.txt" ]; then
     echo "🤖 Mise à jour robots.txt..."
     sed -i '' "s|https://your-domain.com|https://$DOMAIN|g" public/robots.txt
+fi
+
+# Mettre à jour privacy-policy.html
+if [ -f "public/privacy-policy.html" ]; then
+    echo "🔒 Mise à jour privacy-policy.html..."
+    # Remplacer le titre
+    sed -i '' "s/<title>Politique de Confidentialité - Next\.js Template<\/title>/<title>Politique de Confidentialité - $PROJECT_NAME_CAPITALIZED<\/title>/" public/privacy-policy.html
+    # Remplacer les informations de contact
+    sed -i '' "s/\[Votre Nom\]/$AUTHOR_NAME/g" public/privacy-policy.html
+    sed -i '' "s/\[votre-email@example\.com\]/$AUTHOR_EMAIL/g" public/privacy-policy.html
+    sed -i '' "s|https://your-domain\.com|https://$DOMAIN|g" public/privacy-policy.html
 fi
 
 # Créer le fichier .env.local si il n'existe pas
