@@ -7,7 +7,7 @@ interface LoaderProps {
   className?: string;
 }
 
-export function Loader(props: LoaderProps): JSX.Element {
+export function Loader(props: LoaderProps): React.JSX.Element {
   const { className } = props;
   const [showLoader, setShowLoader] = useState(false);
 
@@ -20,9 +20,5 @@ export function Loader(props: LoaderProps): JSX.Element {
     return () => clearTimeout(timeout);
   }, []);
 
-  return showLoader ? (
-    <Loader2 className={cn('mr-2 h-5 w-5 animate-spin', className)} />
-  ) : (
-    <></>
-  );
+  return showLoader ? <Loader2 className={cn('mr-2 h-5 w-5 animate-spin', className)} /> : <></>;
 }

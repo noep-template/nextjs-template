@@ -33,7 +33,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const AppProvider = ({ children }: Props): JSX.Element => {
+export const AppProvider = ({ children }: Props): React.JSX.Element => {
   const context = useAppProvider();
 
   return <AppContext.Provider value={context}>{children}</AppContext.Provider>;

@@ -1,12 +1,12 @@
-import { trackEvent } from '@/services/analytics';
+import { trackEvent } from '@/services/umami';
 import { useCallback } from 'react';
 
-export const useAnalytics = () => {
+export const useUmami = () => {
   const trackCustomEvent = useCallback(
     (action: string, category: string, label?: string, value?: number) => {
       trackEvent(action, category, label, value);
     },
-    []
+    [],
   );
 
   const trackButtonClick = useCallback((buttonName: string) => {

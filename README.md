@@ -55,7 +55,7 @@ Un template Next.js moderne et complet avec TypeScript, Tailwind CSS, internatio
 
    ```bash
    make env.setup
-   # Ou créer manuellement .env.local
+   # Ou créer manuellement .env
    ```
 
 4. **Démarrer en développement**
@@ -130,7 +130,7 @@ Les pages sont dans `src/components/pages/` :
 ### Google Analytics
 
 1. Créer un compte Google Analytics
-2. Ajouter `NEXT_PUBLIC_GA_ID` dans `.env.local`
+2. Ajouter `NEXT_PUBLIC_GA_ID` dans `.env`
 3. Le composant `GoogleAnalytics` s'occupe du reste
 
 ### SEO

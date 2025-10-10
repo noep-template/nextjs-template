@@ -1,7 +1,7 @@
 'use client';
 
 import { useRedirectTo } from '@/hooks/redirectTo';
-import { useAnalytics } from '@/hooks/useAnalytics';
+import { useUmami } from '@/hooks/useUmami';
 import { getGsap } from '@/services/registerGsap';
 import { cn, scrollTo } from '@/services/utils';
 import { MEDIA_QUERIES } from '@/static/constants';
@@ -41,7 +41,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
   const menuRef = useRef<HTMLDivElement>(null);
   const menuItemsRefs = useRef<HTMLDivElement[]>([]);
   const redirectTo = useRedirectTo();
-  const { trackButtonClick } = useAnalytics();
+  const { trackButtonClick } = useUmami();
 
   // verrouillage du scroll mobile
   useEffect(() => {
@@ -61,10 +61,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
         setIsMenuOpen(false);
       }
     };
-    document[isMenuOpen ? 'addEventListener' : 'removeEventListener'](
-      'mousedown',
-      handler
-    );
+    document[isMenuOpen ? 'addEventListener' : 'removeEventListener']('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, [isMenuOpen]);
 
@@ -107,14 +104,11 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
       ref={(el) => {
         if (el) menuItemsRefs.current[index] = el;
       }}
-      className='flex flex-col items-start w-2/3 md:w-1/2 opacity-0'
+      className="flex flex-col items-start w-2/3 md:w-1/2 opacity-0"
     >
       <div className={cn(FLEX_CLASSES.row, 'w-full items-center gap-3')}>
         <ChevronRight
-          className={cn(
-            'text-primary',
-            selectedMenuItem === menu ? 'opacity-100' : 'opacity-0'
-          )}
+          className={cn('text-primary', selectedMenuItem === menu ? 'opacity-100' : 'opacity-0')}
           size={25}
         />
         <div
@@ -131,7 +125,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
             className={cn(
               TEXT_CLASSES.h3,
               'text-2xl md:text-xl text-center text-foreground/70 cursor-pointer group-hover:text-foreground transition duration-300',
-              selectedMenuItem === menu && 'text-foreground'
+              selectedMenuItem === menu && 'text-foreground',
             )}
           >
             {tEnums(menu)}
@@ -140,7 +134,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
             className={cn(
               TEXT_CLASSES.p14,
               'text-primary/70 text-center cursor-pointer group-hover:text-primary transition duration-300',
-              selectedMenuItem === menu && 'text-primary'
+              selectedMenuItem === menu && 'text-primary',
             )}
           >
             {tCommons(`nav.${menu}`)}
@@ -158,7 +152,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
       gsap.fromTo(
         menuItemsRefs.current,
         { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, ease: 'power2.out' }
+        { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, ease: 'power2.out' },
       );
     })();
   }, [isMenuContentVisible]);
@@ -171,7 +165,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
         isMenuOpen
           ? 'h-80 border-primary/60 bg-secondary/90 backdrop-blur-lg'
           : 'h-10 border-border bg-secondary/50 backdrop-blur-md',
-        className
+        className,
       )}
     >
       <div className={cn(FLEX_CLASSES.row, 'justify-around items-center')}>
@@ -185,7 +179,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
               'hover:opacity-80 transition-all duration-300 cursor-pointer font-light h-fit uppercase border-b-2',
               selectedNavItem === nav
                 ? 'border-primary hover:opacity-100'
-                : 'border-transparent hover:border-primary'
+                : 'border-transparent hover:border-primary',
             )}
           >
             {tEnums(nav)}
@@ -195,15 +189,8 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
 
       {/* Menu Content */}
       {isMenuOpen && (
-        <div
-          className={cn(FLEX_CLASSES.col, 'h-full justify-center items-center')}
-        >
-          <div
-            className={cn(
-              FLEX_CLASSES.col,
-              'w-full h-full justify-center items-center gap-5'
-            )}
-          >
+        <div className={cn(FLEX_CLASSES.col, 'h-full justify-center items-center')}>
+          <div className={cn(FLEX_CLASSES.col, 'w-full h-full justify-center items-center gap-5')}>
             {Object.values(MenuKeys).map((menu, index) => (
               <MenuItem key={menu} menu={menu} index={index} />
             ))}

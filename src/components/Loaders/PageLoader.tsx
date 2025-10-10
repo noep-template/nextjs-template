@@ -1,14 +1,14 @@
 'use client';
 import { cn } from '@/services/utils';
 import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Logo } from '../Medias/Logo';
 
 interface PageLoaderProps {
   className?: string;
 }
 
-export function PageLoader(props: PageLoaderProps): JSX.Element {
+export function PageLoader(props: PageLoaderProps): React.JSX.Element {
   const { className } = props;
   const [showLoader, setShowLoader] = useState(false);
 
@@ -25,18 +25,16 @@ export function PageLoader(props: PageLoaderProps): JSX.Element {
     <div
       className={cn(
         'flex flex-col items-center justify-center h-screen w-full relative',
-        className
+        className,
       )}
     >
       {showLoader ? (
-        <div
-          className={cn(FLEX_CLASSES.colCenter, 'py-10 h-full justify-between')}
-        >
+        <div className={cn(FLEX_CLASSES.colCenter, 'py-10 h-full justify-between')}>
           <Logo
-            src='/icons/logo_128x128.webp'
-            alt='Logo Sakana San'
+            src="/icons/logo_128x128.webp"
+            alt="Logo Sakana San"
             size={60}
-            className='w-15 h-15'
+            className="w-15 h-15"
             priority
           />
           <p className={cn(TEXT_CLASSES.p24, 'uppercase')}>{'Sakana San'}</p>

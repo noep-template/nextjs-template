@@ -1,8 +1,7 @@
 // app/layout.tsx (mise à jour)
 'use client';
 
-import { CookieConsent } from '@/components/utils/CookieConsent';
-import GoogleAnalyticsComponent from '@/components/utils/GoogleAnalytics';
+import Umami from '@/components/utils/Umami';
 import { AppProvider } from '@/contexts/AppContext';
 import { Locale, messages } from '@/i18n/config';
 import { IntlProvider } from 'next-intl';
@@ -34,9 +33,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Charge les messages en fonction de la langue détectée
-    const currentLocale = window.location.pathname.includes('/en')
-      ? 'en'
-      : 'fr';
+    const currentLocale = window.location.pathname.includes('/en') ? 'en' : 'fr';
     setLocale(currentLocale);
   }, []);
 
@@ -45,17 +42,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang={locale} className={`${delaGothic.variable} ${monda.variable}`}>
       <body>
-        <IntlProvider
-          timeZone={timeZone}
-          messages={messages[locale]}
-          locale={locale}
-        >
-          <AppProvider>
-            {children}
-            <CookieConsent />
-          </AppProvider>
+        <IntlProvider timeZone={timeZone} messages={messages[locale]} locale={locale}>
+          <AppProvider>{children}</AppProvider>
         </IntlProvider>
-        <GoogleAnalyticsComponent gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
+        <Umami />
       </body>
     </html>
   );
