@@ -1,16 +1,12 @@
 'use client';
 
-import { useRedirectTo } from '@/hooks/redirectTo';
-import { useUmami } from '@/hooks/useUmami';
-import { getGsap } from '@/services/registerGsap';
-import { cn, scrollTo } from '@/services/utils';
-import { MEDIA_QUERIES } from '@/static/constants';
-import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
-import { ChevronRight } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
-import { useMediaQuery, useScrollLock } from 'usehooks-ts';
+import { cn } from '@/services/utils';
+import { FLEX_CLASSES, INTERACTION_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { Menu, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 interface NavBarProps {
   className?: string;
@@ -18,185 +14,188 @@ interface NavBarProps {
 
 export enum NavKeys {
   HOME = 'HOME',
-  MENU = 'MENU',
+  SERVICES = 'SERVICES',
   CONTACT = 'CONTACT',
-}
-
-export enum MenuKeys {
-  PROJECTS = 'PROJECTS',
+  TESTIMONIALS = 'TESTIMONIALS',
 }
 
 export function NavBar({ className }: NavBarProps): React.JSX.Element {
-  const tEnums = useTranslations('enums');
   const tCommons = useTranslations('common');
-  const locale = useLocale(); // 'en' ou 'fr'
-  const router = useRouter(); // navigation avec locale
-  const pathname = usePathname(); // chemin sans préfixe
-  const isMobile = useMediaQuery(MEDIA_QUERIES.SM);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMenuContentVisible, setIsMenuContentVisible] = useState(false);
-  const [selectedNavItem, setSelectedNavItem] = useState<string | null>(null);
-  const [selectedMenuItem, setSelectedMenuItem] = useState<string | null>(null);
-  const { lock, unlock } = useScrollLock({ autoLock: false });
-  const menuRef = useRef<HTMLDivElement>(null);
-  const menuItemsRefs = useRef<HTMLDivElement[]>([]);
-  const redirectTo = useRedirectTo();
-  const { trackButtonClick } = useUmami();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // verrouillage du scroll mobile
-  useEffect(() => {
-    if (isMobile) {
-      if (isMenuOpen) {
-        lock();
+  const Nav = [
+    {
+      key: NavKeys.HOME,
+      href: `#${NavKeys.HOME}`,
+      label: tCommons('navbar.home'),
+    },
+    {
+      key: NavKeys.SERVICES,
+      href: `#${NavKeys.SERVICES}`,
+      label: tCommons('navbar.services'),
+    },
+    {
+      key: NavKeys.TESTIMONIALS,
+      href: `#${NavKeys.TESTIMONIALS}`,
+      label: tCommons('navbar.testimonials'),
+    },
+    {
+      key: NavKeys.CONTACT,
+      href: `#${NavKeys.CONTACT}`,
+      label: tCommons('navbar.contact'),
+    },
+  ];
+
+  const handleNavClick = (navKey: string) => {
+    console.log('Navigating to:', navKey);
+    closeMobileMenu();
+
+    // Use setTimeout to ensure DOM is ready and mobile menu is closed
+    setTimeout(() => {
+      const element = document.getElementById(navKey);
+      console.log('Element found:', element);
+
+      if (element) {
+        const offset = 80; // Adjust for fixed navbar
+        const yPos = element.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({
+          top: yPos,
+          behavior: 'smooth',
+        });
       } else {
-        unlock();
+        console.warn(`Element with id "${navKey}" not found`);
+        // List all elements with IDs for debugging
+        const allElementsWithIds = document.querySelectorAll('[id]');
+        console.log(
+          'All elements with IDs:',
+          Array.from(allElementsWithIds).map((el) => el.id),
+        );
       }
-    }
-  }, [isMenuOpen, isMobile, lock, unlock]);
-
-  // fermer le menu si clic à l'extérieur
-  useEffect(() => {
-    const handler = (e: Event) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setIsMenuOpen(false);
-      }
-    };
-    document[isMenuOpen ? 'addEventListener' : 'removeEventListener']('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, [isMenuOpen]);
-
-  // apparition progressive du contenu du menu
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (isMenuOpen) {
-      timeout = setTimeout(() => setIsMenuContentVisible(true), 500);
-    } else {
-      setIsMenuContentVisible(false);
-    }
-    return () => clearTimeout(timeout);
-  }, [isMenuOpen]);
-
-  // suivi de la route active
-  useEffect(() => {
-    const seg = pathname.split('/')[1].toUpperCase();
-    if (Object.values(MenuKeys).includes(seg as MenuKeys)) {
-      setSelectedMenuItem(seg);
-      setSelectedNavItem(null);
-    } else {
-      setSelectedNavItem(seg);
-      setSelectedMenuItem(null);
-    }
-  }, [pathname]);
-
-  // clic sur un item de navigation principale
-  const handleNavClick = (nav: string) => {
-    setSelectedNavItem(nav);
-    scrollTo(nav);
-    if (nav === NavKeys.HOME && pathname !== '/') {
-      trackButtonClick('nav_home');
-      router.push(`/${locale}`);
-    }
-    setIsMenuOpen(nav === NavKeys.MENU ? !isMenuOpen : false);
+    }, 100);
   };
 
-  const MenuItem = ({ menu, index }: { menu: MenuKeys; index: number }) => (
-    <div
-      ref={(el) => {
-        if (el) menuItemsRefs.current[index] = el;
-      }}
-      className="flex flex-col items-start w-2/3 md:w-1/2 opacity-0"
-    >
-      <div className={cn(FLEX_CLASSES.row, 'w-full items-center gap-3')}>
-        <ChevronRight
-          className={cn('text-primary', selectedMenuItem === menu ? 'opacity-100' : 'opacity-0')}
-          size={25}
-        />
-        <div
-          className={cn(FLEX_CLASSES.col, 'group items-start w-fit')}
-          onClick={() => {
-            trackButtonClick(`nav_${menu.toLowerCase()}`);
-            setSelectedMenuItem(menu);
-            setIsMenuOpen(false);
-            scrollTo(menu);
-            redirectTo(menu);
-          }}
-        >
-          <h3
-            className={cn(
-              TEXT_CLASSES.h3,
-              'text-2xl md:text-xl text-center text-foreground/70 cursor-pointer group-hover:text-foreground transition duration-300',
-              selectedMenuItem === menu && 'text-foreground',
-            )}
-          >
-            {tEnums(menu)}
-          </h3>
-          <p
-            className={cn(
-              TEXT_CLASSES.p14,
-              'text-primary/70 text-center cursor-pointer group-hover:text-primary transition duration-300',
-              selectedMenuItem === menu && 'text-primary',
-            )}
-          >
-            {tCommons(`nav.${menu}`)}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
-  // animations GSAP du menu
-  useEffect(() => {
-    if (!isMenuContentVisible) return;
-    (async () => {
-      const { gsap } = await getGsap();
-      gsap.fromTo(
-        menuItemsRefs.current,
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, ease: 'power2.out' },
-      );
-    })();
-  }, [isMenuContentVisible]);
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
-    <div
-      ref={menuRef}
+    <nav
       className={cn(
-        'fixed top-3 left-1/2 -translate-x-1/2 z-40 w-11/12 md:w-1/3 flex flex-col justify-between border shadow-md rounded transition-all duration-500 overflow-hidden p-2',
-        isMenuOpen
-          ? 'h-80 border-primary/60 bg-secondary/90 backdrop-blur-lg'
-          : 'h-10 border-border bg-secondary/50 backdrop-blur-md',
+        'fixed top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-sm border-b border-border/50',
+        'transition-all duration-300 ease-in-out',
         className,
       )}
+      role="navigation"
+      aria-label="Main navigation"
     >
-      <div className={cn(FLEX_CLASSES.row, 'justify-around items-center')}>
-        {Object.values(NavKeys).map((nav) => (
-          <p
-            key={nav}
-            onClick={() => handleNavClick(nav)}
+      <div className={cn(FLEX_CLASSES.rowBetween, 'px-6 md:px-12 lg:px-20 py-4 max-w-7xl mx-auto')}>
+        <div className={cn(FLEX_CLASSES.rowCenter, 'gap-3')}>
+          <Link href="/" className={cn(INTERACTION_CLASSES.button, FLEX_CLASSES.col)}>
+            <Image
+              src="/logo.webP"
+              alt="Logo"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-lg scale-150"
+              priority
+            />
+          </Link>
+        </div>
+
+        {/* Navigation à droite - Desktop */}
+        <div className={cn(FLEX_CLASSES.rowCenter, 'gap-6 md:gap-8 hidden md:flex')}>
+          {Nav.map((nav) => (
+            <button
+              key={nav.key}
+              onClick={() => handleNavClick(nav.key)}
+              className={cn(
+                TEXT_CLASSES.p16,
+                INTERACTION_CLASSES.button,
+                'relative px-3 py-2 rounded-lg transition-all duration-300',
+                'hover:text-primary hover:bg-primary/10',
+                'before:absolute before:bottom-0 before:left-0 before:w-0 before:h-0.5',
+                'before:bg-primary before:transition-all before:duration-300',
+                'hover:before:w-full active:scale-95',
+              )}
+            >
+              {nav.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Navigation mobile - Dropdown personnalisé */}
+        <div className="md:hidden">
+          <button
+            onClick={toggleMobileMenu}
             className={cn(
-              TEXT_CLASSES.p14,
-              selectedNavItem === nav ? 'opacity-100' : 'opacity-50',
-              'hover:opacity-80 transition-all duration-300 cursor-pointer font-light h-fit uppercase border-b-2',
-              selectedNavItem === nav
-                ? 'border-primary hover:opacity-100'
-                : 'border-transparent hover:border-primary',
+              'h-10 w-10 flex items-center justify-center',
+              'text-foreground hover:text-primary hover:bg-primary/10',
+              'transition-all duration-300 rounded-lg',
+              'focus:outline-none focus:ring-2 focus:ring-primary/20',
             )}
+            aria-label="Ouvrir le menu"
           >
-            {tEnums(nav)}
-          </p>
-        ))}
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
-      {/* Menu Content */}
-      {isMenuOpen && (
-        <div className={cn(FLEX_CLASSES.col, 'h-full justify-center items-center')}>
-          <div className={cn(FLEX_CLASSES.col, 'w-full h-full justify-center items-center gap-5')}>
-            {Object.values(MenuKeys).map((menu, index) => (
-              <MenuItem key={menu} menu={menu} index={index} />
+      {/* Menu mobile avec animation contrôlée */}
+      <div
+        className={cn(
+          'fixed inset-0 z-40 md:hidden',
+          'transition-all duration-500 ease-in-out',
+          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible',
+        )}
+        style={{
+          top: '79px',
+        }}
+      >
+        {/* Overlay pour fermer en cliquant en dehors */}
+        <div
+          className={cn(
+            'absolute inset-0 bg-background/95 backdrop-blur-md',
+            'transition-opacity duration-500',
+            isMobileMenuOpen ? 'opacity-100' : 'opacity-0',
+          )}
+          onClick={closeMobileMenu}
+        />
+
+        {/* Menu dropdown avec animation de haut en bas */}
+        <div
+          className={cn(
+            'absolute top-0 left-0 right-0',
+            'bg-background backdrop-blur-md',
+            'shadow rounded-b-md',
+            'transition-all duration-500 ease-out',
+            isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0',
+          )}
+        >
+          <div className="px-6 py-6 space-y-4">
+            {Nav.map((nav) => (
+              <button
+                key={nav.key}
+                onClick={() => handleNavClick(nav.key)}
+                className={cn(
+                  TEXT_CLASSES.h3,
+                  'block py-4 px-4 rounded w-full text-left',
+                  'bg-primary/10',
+                  'transition-all duration-300',
+                  'active:scale-[0.98]',
+                  'border border-transparent',
+                )}
+              >
+                {nav.label}
+              </button>
             ))}
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    </nav>
   );
 }

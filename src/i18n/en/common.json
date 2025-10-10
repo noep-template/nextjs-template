@@ -20,15 +20,11 @@
   },
   "status": "Available for work",
   "position": "Fullstack Developer",
-  "location": "Currently in Quimper, France",
-  "hey": "Hey you!",
-  "nav": {
-    "PROJECTS": "Discover my projects"
-  },
-  "cookieConsent": {
-    "description": "I use cookies to analyze traffic and improve your experience. This data is anonymized and does not personally identify you.",
-    "accept": "Accept",
-    "decline": "Decline"
+  "navbar": {
+    "home": "Home",
+    "services": "Discover our services",
+    "contact": "Contact us",
+    "testimonials": "Customer reviews"
   },
   "footer": {
     "title": "Thinking about building something together? Don't hesitate to get in touch!"
