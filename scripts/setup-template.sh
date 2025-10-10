@@ -66,26 +66,41 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Vérifier que le nom du projet est fourni
+# Demander les informations interactivement (ignorer les args CLI)
+read -p "Nom du projet (obligatoire): " PROJECT_NAME
 if [ -z "$PROJECT_NAME" ]; then
     echo "❌ Le nom du projet est obligatoire"
-    show_help
     exit 1
 fi
 
-# Valeurs par défaut
-PROJECT_DESCRIPTION=${PROJECT_DESCRIPTION:-"Application Next.js avec TypeScript, Tailwind CSS et internationalisation"}
-AUTHOR_NAME=${AUTHOR_NAME:-"Développeur"}
-AUTHOR_EMAIL=${AUTHOR_EMAIL:-"dev@example.com"}
+read -p "Description du projet: " PROJECT_DESCRIPTION
+read -p "Nom de l'auteur: " AUTHOR_NAME
+read -p "Email de l'auteur: " AUTHOR_EMAIL
 
-echo "📝 Configuration du projet:"
+# Demander le domaine et si hébergé sur Vercel
+read -p "🌐 Entrez le domaine de votre site (ex: mon-site.com): " DOMAIN
+if [ -z "$DOMAIN" ]; then
+    DOMAIN="your-domain.com"
+    echo "ℹ️  Utilisation du domaine par défaut: $DOMAIN"
+fi
+
+read -p "🌩️  Votre site est-il déployé sur Vercel ? (y/N): " -n 1 -r VERCEL_REPLY
+echo
+
+# Afficher le récapitulatif et demander confirmation finale
+echo "Résumé de la configuration:"
 echo "  Nom: $PROJECT_NAME"
 echo "  Description: $PROJECT_DESCRIPTION"
 echo "  Auteur: $AUTHOR_NAME"
 echo "  Email: $AUTHOR_EMAIL"
-echo ""
+echo "  Domaine: $DOMAIN"
+if [[ $VERCEL_REPLY =~ ^[Yy]$ ]]; then
+    echo "  Hébergé sur Vercel: oui"
+else
+    echo "  Hébergé sur Vercel: non"
+fi
 
-# Demander confirmation
+# Confirmation finale
 read -p "Continuer avec cette configuration? (y/N): " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -93,13 +108,44 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-echo "🔧 Mise à jour des fichiers..."
+    # Si l'utilisateur a répondu que le site est sur Vercel, supprimer les artefacts CI/CD maintenant
+    if [[ $VERCEL_REPLY =~ ^[Yy]$ ]]; then
+        echo "ℹ️  Suppression des fichiers CI/CD non nécessaires pour Vercel..."
+
+        # Supprimer le dossier .github s'il existe
+        if [ -d ".github" ]; then
+            echo "🗑️  Suppression du dossier .github/..."
+            rm -rf .github
+        else
+            echo "ℹ️  Aucun dossier .github trouvé"
+        fi
+
+        # Supprimer docker-compose.yml s'il existe
+        if [ -f "docker-compose.yml" ]; then
+            echo "🗑️  Suppression de docker-compose.yml"
+            rm -f docker-compose.yml
+        else
+            echo "ℹ️  Aucun fichier docker-compose.yml trouvé"
+        fi
+
+        # Supprimer Dockerfile s'il existe
+        if [ -f "Dockerfile" ]; then
+            echo "🗑️  Suppression de Dockerfile"
+            rm -f Dockerfile
+        else
+            echo "ℹ️  Aucun Dockerfile trouvé"
+        fi
+
+        echo "✅ Suppression des artefacts CI/CD terminée."
+    fi
+
+    echo "🔧 Mise à jour des fichiers..."
 
 # Mettre à jour package.json
 if [ -f "package.json" ]; then
     echo "📦 Mise à jour package.json..."
     sed -i '' "s/\"name\": \"portfolio\"/\"name\": \"$PROJECT_NAME\"/" package.json
-    sed -i '' "s/\"name\": \"hello\"/\"name\": \"$PROJECT_NAME\"/" package.json
+    sed -i '' "s/\"name\": \"sdf\"/\"name\": \"$PROJECT_NAME\"/" package.json
     # Ajouter la description si elle n'existe pas
     if ! grep -q '"description"' package.json; then
         # Ajouter la description après la ligne "private": true
@@ -121,19 +167,19 @@ fi
 # Mettre à jour docker-compose.yml
 if [ -f "docker-compose.yml" ]; then
     echo "🐳 Mise à jour docker-compose.yml..."
-    sed -i '' "s/hello/${PROJECT_NAME}/g" docker-compose.yml
+    sed -i '' "s/sdf/${PROJECT_NAME}/g" docker-compose.yml
 fi
 
 # Mettre à jour les scripts
 echo "📜 Mise à jour des scripts..."
-find scripts/ -name "*.sh" -type f -exec sed -i '' "s/hello/${PROJECT_NAME}/g" {} \;
+find scripts/ -name "*.sh" -type f -exec sed -i '' "s/sdf/${PROJECT_NAME}/g" {} \;
 
 # Mettre à jour le workflow GitHub Actions
 if [ -f ".github/workflows/deploy.yml" ]; then
     echo "⚙️  Mise à jour du workflow GitHub Actions..."
-    sed -i '' "s/hello/${PROJECT_NAME}/g" .github/workflows/deploy.yml
+    sed -i '' "s/sdf/${PROJECT_NAME}/g" .github/workflows/deploy.yml
     # Mettre à jour le chemin du répertoire sur le serveur
-    sed -i '' "s|~/hello|~/$(echo $PROJECT_NAME | tr '-' '_')|g" .github/workflows/deploy.yml
+    sed -i '' "s|~/sdf|~/$(echo $PROJECT_NAME | tr '-' '_')|g" .github/workflows/deploy.yml
 fi
 
 # Mettre à jour le README
@@ -142,13 +188,13 @@ if [ -f "README.md" ]; then
     # Capitaliser la première lettre du nom du projet
     PROJECT_NAME_CAPITALIZED=$(echo "$PROJECT_NAME" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
     sed -i '' "s/This is a \[Next\.js\].*project bootstrapped with.*/This is a [Next.js](https:\/\/nextjs.org\/) project: $PROJECT_NAME_CAPITALIZED/" README.md
-    sed -i '' "s/hello/${PROJECT_NAME}/g" README.md
+    sed -i '' "s/sdf/${PROJECT_NAME}/g" README.md
 fi
 
 # Mettre à jour le Dockerfile si il existe
 if [ -f "Dockerfile" ]; then
     echo "🐳 Mise à jour du Dockerfile..."
-    sed -i '' "s/hello/${PROJECT_NAME}/g" Dockerfile
+    sed -i '' "s/sdf/${PROJECT_NAME}/g" Dockerfile
 fi
 
 # Mettre à jour les fichiers dans /public
@@ -161,14 +207,6 @@ if [ -f "public/manifest.json" ]; then
     PROJECT_NAME_CAPITALIZED=$(echo "$PROJECT_NAME" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
     sed -i '' "s/\"name\": \"Next\.js Template \| Portfolio\"/\"name\": \"$PROJECT_NAME_CAPITALIZED\"/" public/manifest.json
     sed -i '' "s/\"short_name\": \"Next\.js Template \| Portfolio\"/\"short_name\": \"$PROJECT_NAME_CAPITALIZED\"/" public/manifest.json
-fi
-
-# Demander le domaine pour les fichiers de configuration
-echo ""
-read -p "🌐 Entrez le domaine de votre site (ex: mon-site.com): " DOMAIN
-if [ -z "$DOMAIN" ]; then
-    DOMAIN="your-domain.com"
-    echo "ℹ️  Utilisation du domaine par défaut: $DOMAIN"
 fi
 
 # Mettre à jour sitemap.xml
@@ -194,25 +232,21 @@ if [ -f "public/privacy-policy.html" ]; then
     sed -i '' "s|https://your-domain\.com|https://$DOMAIN|g" public/privacy-policy.html
 fi
 
-# Créer le fichier .env.local si il n'existe pas
-if [ ! -f ".env.local" ]; then
-    echo "🔐 Création du fichier .env.local..."
-    cat > .env.local << EOF
-# Configuration de l'application
+# Créer le fichier .env si il n'existe pas
+if [ ! -f ".env" ]; then
+    echo "🔐 Création du fichier .env..."
+    cat > .env << EOF
 NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_PORT=3000
+NODE_ENV=development
 
-# Google Analytics (optionnel)
-NEXT_PUBLIC_GA_ID=
-
-# Variables d'environnement personnalisées
 # Ajoutez vos variables ici
 EOF
-    echo "✅ Fichier .env.local créé. N'oubliez pas de le configurer!"
+    echo "✅ Fichier .env créé. N'oubliez pas de le configurer!"
     echo "📝 Variables importantes à configurer :"
     echo "  - NEXT_PUBLIC_APP_URL : URL de votre application"
-    echo "  - NEXT_PUBLIC_GA_ID : ID Google Analytics (optionnel)"
 else
-    echo "ℹ️  Fichier .env.local existe déjà"
+    echo "ℹ️  Fichier .env existe déjà"
 fi
 
 # Rendre les scripts exécutables
@@ -223,7 +257,7 @@ echo ""
 echo "✅ Configuration terminée avec succès!"
 echo ""
 echo "📋 Prochaines étapes:"
-echo "1. Configurer le fichier .env.local avec vos paramètres"
+echo "1. Configurer le fichier .env avec vos paramètres"
 echo "2. Installer les dépendances: bun install"
 echo "3. Démarrer l'application en mode développement: bun dev"
 echo "4. Construire l'application: bun run build"
