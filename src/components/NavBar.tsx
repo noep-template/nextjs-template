@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/services/utils';
-import { FLEX_CLASSES, INTERACTION_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { Row, RowBetween, RowCenter } from '@/static/styles/Flex';
 import { Menu, X } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 import React, { useState } from 'react';
+import { H3, P16 } from './utils/Texts';
 
 interface NavBarProps {
   className?: string;
@@ -108,9 +109,9 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className={cn(FLEX_CLASSES.rowBetween, 'px-6 md:px-12 lg:px-20 py-4 max-w-7xl mx-auto')}>
-        <div className={cn(FLEX_CLASSES.rowCenter, 'gap-3')}>
-          <Link href="/" className={cn(INTERACTION_CLASSES.button, FLEX_CLASSES.col)}>
+      <RowBetween className="px-6 md:px-12 lg:px-20 py-4 max-w-7xl mx-auto">
+        <RowCenter className="gap-3">
+          <Link href="/" className={cn('cursor-pointer transition duration-300')}>
             <Image
               src="/logo.webP"
               alt="Logo"
@@ -120,17 +121,16 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
               priority
             />
           </Link>
-        </div>
+        </RowCenter>
 
         {/* Navigation à droite - Desktop */}
-        <div className={cn(FLEX_CLASSES.rowCenter, 'gap-6 md:gap-8 hidden md:flex')}>
+        <RowCenter className="gap-6 md:gap-8 hidden md:flex">
           {Nav.map((nav) => (
             <button
               key={nav.key}
               onClick={() => handleNavClick(nav.key)}
               className={cn(
-                TEXT_CLASSES.p16,
-                INTERACTION_CLASSES.button,
+                'cursor-pointer transition duration-300',
                 'relative px-3 py-2 rounded-lg transition-all duration-300',
                 'hover:text-primary hover:bg-primary/10',
                 'before:absolute before:bottom-0 before:left-0 before:w-0 before:h-0.5',
@@ -138,15 +138,14 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
                 'hover:before:w-full active:scale-95',
               )}
             >
-              {nav.label}
+              <P16>{nav.label}</P16>
             </button>
           ))}
-          <div className={cn(FLEX_CLASSES.row, 'gap-1')}>
+          <Row className="gap-1">
             {['Fr', 'En'].map((lang) => (
               <React.Fragment key={lang}>
-                <p
+                <P16
                   className={cn(
-                    TEXT_CLASSES.p16,
                     'cursor-pointer transition duration-300',
                     locale === lang.toLocaleLowerCase()
                       ? 'text-primary'
@@ -155,14 +154,12 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
                   onClick={() => handleLanguageChange(lang.toLocaleLowerCase())}
                 >
                   {lang}
-                </p>
-                {lang === 'Fr' && (
-                  <p className={cn(TEXT_CLASSES.p16, INTERACTION_CLASSES.separator)}>{'/'}</p>
-                )}
+                </P16>
+                {lang === 'Fr' && <P16 className={cn('text-foreground/50')}>{'/'}</P16>}
               </React.Fragment>
             ))}
-          </div>
-        </div>
+          </Row>
+        </RowCenter>
 
         {/* Navigation mobile - Dropdown personnalisé */}
         <div className="md:hidden">
@@ -179,7 +176,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
-      </div>
+      </RowBetween>
 
       {/* Menu mobile avec animation contrôlée */}
       <div
@@ -218,7 +215,6 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
                 key={nav.key}
                 onClick={() => handleNavClick(nav.key)}
                 className={cn(
-                  TEXT_CLASSES.h3,
                   'block py-4 px-4 rounded w-full text-left',
                   'bg-primary/10',
                   'transition-all duration-300',
@@ -226,7 +222,7 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
                   'border border-transparent',
                 )}
               >
-                {nav.label}
+                <H3>{nav.label}</H3>
               </button>
             ))}
           </div>

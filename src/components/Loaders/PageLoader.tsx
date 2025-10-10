@@ -1,8 +1,9 @@
 'use client';
 import { cn } from '@/services/utils';
-import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { ColCenter } from '@/static/styles/Flex';
 import React, { useEffect, useState } from 'react';
 import { Logo } from '../Medias/Logo';
+import { P24 } from '../utils/Texts';
 
 interface PageLoaderProps {
   className?: string;
@@ -29,7 +30,7 @@ export function PageLoader(props: PageLoaderProps): React.JSX.Element {
       )}
     >
       {showLoader ? (
-        <div className={cn(FLEX_CLASSES.colCenter, 'py-10 h-full justify-between')}>
+        <ColCenter className="py-10 h-full justify-between">
           <Logo
             src="/icons/logo_128x128.webp"
             alt="Logo Sakana San"
@@ -37,8 +38,8 @@ export function PageLoader(props: PageLoaderProps): React.JSX.Element {
             className="w-15 h-15"
             priority
           />
-          <p className={cn(TEXT_CLASSES.p24, 'uppercase')}>{'Sakana San'}</p>
-        </div>
+          <P24 className="uppercase">{'Sakana San'}</P24>
+        </ColCenter>
       ) : null}
     </div>
   );

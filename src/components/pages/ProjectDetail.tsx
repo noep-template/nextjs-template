@@ -1,11 +1,11 @@
 /* eslint-disable indent */
 'use client';
 import { FullPageLoader } from '@/components/Loaders/FullPageLoader';
-import { cn } from '@/services/utils';
 import { projects } from '@/static/projects';
-import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { Col } from '@/static/styles/Flex';
 import { useTranslations } from 'next-intl';
 import { Layout } from '../utils/Layout';
+import { H1, P16 } from '../utils/Texts';
 
 interface ProjectDetailProps {
   slug: string;
@@ -17,16 +17,11 @@ export function ProjectDetail({ slug }: ProjectDetailProps) {
 
   return project ? (
     <Layout>
-      <div
-        className={cn(
-          FLEX_CLASSES.col,
-          'w-full h-screen flex items-center justify-center gap-4'
-        )}
-      >
-        <h1 className={TEXT_CLASSES.h1}>{tProjects(project.title)}</h1>
-        <p className={TEXT_CLASSES.p16}>{tProjects(project.description)}</p>
-        <p className={TEXT_CLASSES.p16}>{project.id}</p>
-      </div>
+      <Col className="w-full h-screen flex items-center justify-center gap-4">
+        <H1>{tProjects(project.title)}</H1>
+        <P16>{tProjects(project.description)}</P16>
+        <P16>{project.id}</P16>
+      </Col>
     </Layout>
   ) : (
     <FullPageLoader />

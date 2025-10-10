@@ -2,12 +2,12 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/services/routes';
-import { cn } from '@/services/utils';
 import { projects } from '@/static/projects';
-import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { Col } from '@/static/styles/Flex';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { Layout } from '../utils/Layout';
+import { H1 } from '../utils/Texts';
 
 export function ProjectsPage(): React.JSX.Element {
   const router = useRouter();
@@ -15,24 +15,19 @@ export function ProjectsPage(): React.JSX.Element {
 
   return (
     <Layout>
-      <div
-        className={cn(
-          FLEX_CLASSES.col,
-          'w-full h-screen items-center justify-center'
-        )}
-      >
-        <h1 className={TEXT_CLASSES.h1}>{tCommons('projects.name')}</h1>
+      <Col className="w-full h-screen items-center justify-center">
+        <H1>{tCommons('projects.name')}</H1>
         {projects.map((project) => (
           <Button
             key={project.slug}
-            className='mt-4'
-            variant='outline'
+            className="mt-4"
+            variant="outline"
             onClick={() => router.push(ROUTES.projects.project(project.slug))}
           >
             {project.id}
           </Button>
         ))}
-      </div>
+      </Col>
     </Layout>
   );
 }

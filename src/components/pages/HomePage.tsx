@@ -1,7 +1,6 @@
 'use client';
 
-import { cn } from '@/services/utils';
-import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { Col } from '@/static/styles/Flex';
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import { Image } from '../Medias/Image';
@@ -9,6 +8,7 @@ import { ImagesFullScreen } from '../Medias/ImagesFullScreen';
 import { NavKeys } from '../NavBar';
 import { Button } from '../ui/button';
 import { Layout } from '../utils/Layout';
+import { H1, P14 } from '../utils/Texts';
 
 export function HomePage(): React.JSX.Element {
   const tCommons = useTranslations('common');
@@ -25,11 +25,8 @@ export function HomePage(): React.JSX.Element {
 
   return (
     <Layout>
-      <div
-        id={NavKeys.HOME}
-        className={cn(FLEX_CLASSES.col, 'h-screen w-full items-center justify-center gap-8')}
-      >
-        <h1 className={TEXT_CLASSES.h1}>{tCommons('home.name')}</h1>
+      <Col id={NavKeys.HOME} className="h-screen w-full items-center justify-center gap-8">
+        <H1>{tCommons('home.name')}</H1>
 
         {/* Section d'exemple avec galerie d'images */}
         <div className="flex flex-col items-center gap-4">
@@ -59,11 +56,11 @@ export function HomePage(): React.JSX.Element {
             ))}
           </div>
 
-          <p className={cn(TEXT_CLASSES.p14, 'text-sm text-muted-foreground text-center max-w-md')}>
+          <P14 className="text-sm text-muted-foreground text-center max-w-md">
             {tCommons('home.description')}
-          </p>
+          </P14>
         </div>
-      </div>
+      </Col>
 
       {/* Composant ImagesFullScreen */}
       <ImagesFullScreen

@@ -1,9 +1,10 @@
 import { cn } from '@/services/utils';
-import { FLEX_CLASSES, INTERACTION_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { Col, ColCenter, RowCenter } from '@/static/styles/Flex';
 import { Instagram, Mail, Phone } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { NavKeys } from './NavBar';
+import { H2, H4, P12, P14, P16, P18 } from './utils/Texts';
 
 interface FooterProps {
   className?: string;
@@ -36,23 +37,15 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
 
   return (
     <footer className={cn('w-full bg-secondary py-16 md:py-20', className)} id={NavKeys.CONTACT}>
-      <div
-        className={cn(
-          'max-w-6xl mx-auto px-6 md:px-12 lg:px-20',
-          FLEX_CLASSES.colCenter,
-          'text-center',
-        )}
-      >
+      <ColCenter className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 text-center">
         {/* Titre principal */}
-        <div className={cn(FLEX_CLASSES.colCenter, 'mb-12')}>
-          <h2 className={cn(TEXT_CLASSES.h2, 'text-foreground mb-4')}>{t('footer.title')}</h2>
-          <p className={cn(TEXT_CLASSES.p18, 'text-muted-foreground max-w-2xl')}>
-            {t('footer.subtitle')}
-          </p>
-        </div>
+        <ColCenter className="mb-12">
+          <H2 className="text-foreground mb-4">{t('footer.title')}</H2>
+          <P18 className="text-muted-foreground max-w-2xl">{t('footer.subtitle')}</P18>
+        </ColCenter>
 
         {/* Réseaux sociaux */}
-        <div className={cn(FLEX_CLASSES.rowCenter, 'gap-6 mb-12')}>
+        <RowCenter className="gap-6 mb-12">
           {socialNetworks.map((network) => {
             const IconComponent = network.icon;
             return (
@@ -62,7 +55,7 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
                 target={network.external ? '_blank' : undefined}
                 rel={network.external ? 'noopener noreferrer' : undefined}
                 className={cn(
-                  INTERACTION_CLASSES.button,
+                  'cursor-pointer transition duration-300',
                   'p-4 rounded-full bg-card',
                   'hover:scale-110 transition-all duration-300',
                   'border border-border',
@@ -74,10 +67,10 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
               </a>
             );
           })}
-        </div>
+        </RowCenter>
 
         {/* Bouton de contact principal */}
-        <div className={cn(FLEX_CLASSES.colCenter, 'gap-4 mb-12')}>
+        <ColCenter className="gap-4 mb-12">
           <a
             href={`${socialNetworks[0].href}?subject=Demande de devis&body=Bonjour, je souhaiterais obtenir un devis pour vos services de nettoyage.`}
             className={cn(
@@ -90,7 +83,7 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
           >
             {t('generics.sendEmail')}
           </a>
-        </div>
+        </ColCenter>
 
         {/* Informations de contact */}
         <div
@@ -100,15 +93,14 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
             'border border-border',
           )}
         >
-          <div className={cn(FLEX_CLASSES.colCenter, 'gap-3')}>
-            <h3 className={cn(TEXT_CLASSES.h4, 'text-foreground')}>{t('footer.contact.title')}</h3>
-            <div className={cn(FLEX_CLASSES.col, 'gap-2 text-center')}>
+          <ColCenter className="gap-3">
+            <H4 className="text-foreground">{t('footer.contact.title')}</H4>
+            <Col className="gap-2 text-center">
               <a
                 href={socialNetworks[0].href}
                 className={cn(
-                  TEXT_CLASSES.p16,
-                  'text-muted-foreground hover:text-accent',
-                  'transition-colors duration-300 cursor-pointer',
+                  'text-[16px] font-mono font-normal leading-0',
+                  'text-muted-foreground hover:text-accent transition-colors duration-300 cursor-pointer',
                 )}
               >
                 {'📧'} {t('footer.contact.email')}
@@ -116,33 +108,32 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
               <a
                 href={socialNetworks[1].href}
                 className={cn(
-                  TEXT_CLASSES.p16,
-                  'text-muted-foreground hover:text-accent',
-                  'transition-colors duration-300 cursor-pointer',
+                  'text-[16px] font-mono font-normal leading-0',
+                  'text-muted-foreground hover:text-accent transition-colors duration-300 cursor-pointer',
                 )}
               >
                 {'📞'} {t('footer.contact.phone')}
               </a>
-            </div>
-          </div>
+            </Col>
+          </ColCenter>
 
-          <div className={cn(FLEX_CLASSES.colCenter, 'gap-3')}>
-            <h3 className={cn(TEXT_CLASSES.h4, 'text-foreground')}>{t('footer.zone.title')}</h3>
-            <div className={cn(FLEX_CLASSES.col, 'gap-2 text-center')}>
-              <p className={cn(TEXT_CLASSES.p16, 'text-muted-foreground')}>
+          <ColCenter className="gap-3">
+            <H4 className="text-foreground">{t('footer.zone.title')}</H4>
+            <Col className="gap-2 text-center">
+              <P16 className="text-muted-foreground">
                 {'📍'} {t('footer.zone.location')}
-              </p>
-              <p className={cn(TEXT_CLASSES.p16, 'text-muted-foreground')}>
+              </P16>
+              <P16 className="text-muted-foreground">
                 {'🕘'} {t('footer.zone.availability')}
-              </p>
-            </div>
-          </div>
+              </P16>
+            </Col>
+          </ColCenter>
         </div>
 
         {/* Copyright et crédits */}
-        <div className={cn(FLEX_CLASSES.colCenter, 'gap-4 pt-8 border-t border-border')}>
-          <p className={cn(TEXT_CLASSES.p14, 'text-muted-foreground')}>{t('footer.copyright')}</p>
-          <p className={cn(TEXT_CLASSES.p12, 'text-muted-foreground')}>
+        <ColCenter className="gap-4 pt-8 border-t border-border">
+          <P14 className="text-muted-foreground">{t('footer.copyright')}</P14>
+          <P12 className="text-muted-foreground">
             {t('footer.designed')}{' '}
             <a
               href="https://noe-philippe.fr"
@@ -152,9 +143,9 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
             >
               {'Noé PHILIPPE'}
             </a>
-          </p>
-        </div>
-      </div>
+          </P12>
+        </ColCenter>
+      </ColCenter>
     </footer>
   );
 }
