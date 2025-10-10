@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import { Image } from '../Medias/Image';
 import { ImagesFullScreen } from '../Medias/ImagesFullScreen';
+import { NavKeys } from '../NavBar';
 import { Button } from '../ui/button';
 import { Layout } from '../utils/Layout';
 
@@ -24,7 +25,10 @@ export function HomePage(): React.JSX.Element {
 
   return (
     <Layout>
-      <div className={cn(FLEX_CLASSES.col, 'h-screen w-full items-center justify-center gap-8')}>
+      <div
+        id={NavKeys.HOME}
+        className={cn(FLEX_CLASSES.col, 'h-screen w-full items-center justify-center gap-8')}
+      >
         <h1 className={TEXT_CLASSES.h1}>{tCommons('home.name')}</h1>
 
         {/* Section d'exemple avec galerie d'images */}

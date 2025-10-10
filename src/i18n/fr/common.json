@@ -1,7 +1,5 @@
 {
   "generics": {
-    "copyright": "Copyright © 2025 - Tous droits réservés",
-    "designed": "Design & développement",
     "email": "Email",
     "github": "GitHub",
     "linkedin": "LinkedIn",
@@ -26,6 +24,19 @@
     "testimonials": "Avis clients"
   },
   "footer": {
-    "title": "Envie de construire quelque chose ensemble ? N'hésite pas à me contacter !"
+    "title": "Titre du footer",
+    "subtitle": "Contactez-nous pour un devis gratuit",
+    "copyright": "Copyright © 2025 - Tous droits réservés",
+    "designed": "Site réalisé par",
+    "contact": {
+      "title": "Contact",
+      "email": "test@gmail.com",
+      "phone": "00 00 00 00 00"
+    },
+    "zone": {
+      "title": "Zone d'intervention",
+      "location": "Pays Bigouden",
+      "availability": "Disponible 7j/7"
+    }
   }
 }

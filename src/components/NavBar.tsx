@@ -3,9 +3,11 @@
 import { cn } from '@/services/utils';
 import { FLEX_CLASSES, INTERACTION_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
 import { Menu, X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+
 import React, { useState } from 'react';
 
 interface NavBarProps {
@@ -22,6 +24,9 @@ export enum NavKeys {
 export function NavBar({ className }: NavBarProps): React.JSX.Element {
   const tCommons = useTranslations('common');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const Nav = [
     {
@@ -83,6 +88,16 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
     setIsMobileMenuOpen(false);
   };
 
+  const handleLanguageChange = (lang: string) => {
+    const segments = pathname.split('/').filter(Boolean);
+    const pathWithoutLocale =
+      segments[0] === 'en' || segments[0] === 'fr'
+        ? segments.slice(1).join('/')
+        : segments.join('/');
+
+    router.push(`/${lang}/${pathWithoutLocale}`);
+  };
+
   return (
     <nav
       className={cn(
@@ -126,6 +141,27 @@ export function NavBar({ className }: NavBarProps): React.JSX.Element {
               {nav.label}
             </button>
           ))}
+          <div className={cn(FLEX_CLASSES.row, 'gap-1')}>
+            {['Fr', 'En'].map((lang) => (
+              <React.Fragment key={lang}>
+                <p
+                  className={cn(
+                    TEXT_CLASSES.p16,
+                    'cursor-pointer transition duration-300',
+                    locale === lang.toLocaleLowerCase()
+                      ? 'text-primary'
+                      : 'text-foreground/50 hover:text-foreground/80',
+                  )}
+                  onClick={() => handleLanguageChange(lang.toLocaleLowerCase())}
+                >
+                  {lang}
+                </p>
+                {lang === 'Fr' && (
+                  <p className={cn(TEXT_CLASSES.p16, INTERACTION_CLASSES.separator)}>{'/'}</p>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
 
         {/* Navigation mobile - Dropdown personnalisé */}

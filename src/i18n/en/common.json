@@ -1,8 +1,6 @@
 {
   "language": "en",
   "generics": {
-    "copyright": "Copyright © 2025 - All rights reserved",
-    "designed": "Design & Development",
     "email": "Email",
     "github": "GitHub",
     "linkedin": "LinkedIn",
@@ -27,6 +25,19 @@
     "testimonials": "Customer reviews"
   },
   "footer": {
-    "title": "Thinking about building something together? Don't hesitate to get in touch!"
+    "title": "Footer Title",
+    "subtitle": "Contact us for a free quote",
+    "copyright": "Copyright © 2025 - All rights reserved",
+    "designed": "Site réalisé par",
+    "contact": {
+      "title": "Contact",
+      "email": "test@gmail.com",
+      "phone": "00 00 00 00 00"
+    },
+    "zone": {
+      "title": "Intervention Area",
+      "location": "Pays Bigouden",
+      "availability": "Available 7 days a week"
+    }
   }
 }

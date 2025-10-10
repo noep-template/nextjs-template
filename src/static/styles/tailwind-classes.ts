@@ -47,9 +47,5 @@ export const INTERACTION_CLASSES = {
   link: 'flex items-center gap-1 group cursor-pointer w-fit leading-5',
   button: 'cursor-pointer transition duration-300',
   hover: 'hover:text-foreground/80',
-  languageSwitcher: 'hidden md:flex absolute z-40 gap-1 top-5 right-10',
-  languageButton: 'cursor-pointer transition duration-300',
-  languageActive: 'text-primary',
-  languageInactive: 'text-foreground/50 hover:text-foreground/80',
   separator: 'text-foreground/50',
 } as const;

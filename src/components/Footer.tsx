@@ -1,8 +1,6 @@
-'use client';
-import { Button } from '@/components/ui/button';
-import { useUmami } from '@/hooks/useUmami';
 import { cn } from '@/services/utils';
-import { FLEX_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { FLEX_CLASSES, INTERACTION_CLASSES, TEXT_CLASSES } from '@/static/styles/tailwind-classes';
+import { Instagram, Mail, Phone } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { NavKeys } from './NavBar';
@@ -11,162 +9,152 @@ interface FooterProps {
   className?: string;
 }
 
-const socialLinks = [
-  {
-    href: 'mailto:noephilippe29@gmail.com',
-    labelKey: 'generics.email',
-    analyticsLabel: 'email_contact',
-  },
-  {
-    href: 'https://github.com/Noe-p',
-    labelKey: 'generics.github',
-    analyticsLabel: 'github_profile',
-  },
-  {
-    href: 'https://www.linkedin.com/in/noe-philippe/',
-    labelKey: 'generics.linkedin',
-    analyticsLabel: 'linkedin_profile',
-  },
-  {
-    href: 'https://www.instagram.com/noefdrgv/',
-    labelKey: 'generics.instagram',
-    analyticsLabel: 'instagram_profile',
-  },
-];
-
 export function Footer({ className }: FooterProps): React.JSX.Element {
   const t = useTranslations('common');
-  const { trackButtonClick } = useUmami();
 
-  const handleSocialLinkClick = (analyticsLabel: string) => {
-    trackButtonClick(analyticsLabel);
-  };
-
-  const handleEmailButtonClick = () => {
-    trackButtonClick('email_button_footer');
-  };
+  // Même tableau que le header pour la cohérence
+  const socialNetworks = [
+    {
+      name: 'Email',
+      icon: Mail,
+      href: 'mailto:test@gmail.com',
+      external: false,
+    },
+    {
+      name: 'Téléphone',
+      icon: Phone,
+      href: 'tel:0000000000',
+      external: false,
+    },
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      href: 'https://www.instagram.com',
+      external: true,
+    },
+  ];
 
   return (
-    <div
-      className={cn('flex items-center w-full flex-col mb-5 md:mb-10 mt-10', className)}
-      id={NavKeys.CONTACT}
-    >
-      <div className={cn(FLEX_CLASSES.rowBetween, 'flex-col md:flex-row w-full mt-15')}>
-        {/* Social Links */}
-        <div
-          className={cn(
-            FLEX_CLASSES.col,
-            'flex-row md:flex-col mt-10 md:mt-0 justify-between md:justify-start md:gap-3 order-2 md:order-1',
-          )}
-        >
-          {socialLinks.map(({ href, labelKey, analyticsLabel }) => (
-            <a
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full block group"
-              onClick={() => handleSocialLinkClick(analyticsLabel)}
-            >
-              <p
+    <footer className={cn('w-full bg-secondary py-16 md:py-20', className)} id={NavKeys.CONTACT}>
+      <div
+        className={cn(
+          'max-w-6xl mx-auto px-6 md:px-12 lg:px-20',
+          FLEX_CLASSES.colCenter,
+          'text-center',
+        )}
+      >
+        {/* Titre principal */}
+        <div className={cn(FLEX_CLASSES.colCenter, 'mb-12')}>
+          <h2 className={cn(TEXT_CLASSES.h2, 'text-foreground mb-4')}>{t('footer.title')}</h2>
+          <p className={cn(TEXT_CLASSES.p18, 'text-muted-foreground max-w-2xl')}>
+            {t('footer.subtitle')}
+          </p>
+        </div>
+
+        {/* Réseaux sociaux */}
+        <div className={cn(FLEX_CLASSES.rowCenter, 'gap-6 mb-12')}>
+          {socialNetworks.map((network) => {
+            const IconComponent = network.icon;
+            return (
+              <a
+                key={network.name}
+                href={network.href}
+                target={network.external ? '_blank' : undefined}
+                rel={network.external ? 'noopener noreferrer' : undefined}
                 className={cn(
-                  TEXT_CLASSES.p16,
-                  'group-hover:text-primary cursor-pointer text-foreground transition-all duration-300',
+                  INTERACTION_CLASSES.button,
+                  'p-4 rounded-full bg-card',
+                  'hover:scale-110 transition-all duration-300',
+                  'border border-border',
+                  'shadow-lg hover:shadow-xl',
+                  'hover:bg-primary/20',
                 )}
               >
-                {t(labelKey)}
-              </p>
-            </a>
-          ))}
+                <IconComponent className="h-6 w-6 text-foreground" />
+              </a>
+            );
+          })}
         </div>
 
-        {/* Title + Buttons */}
-        <div className={cn(FLEX_CLASSES.col, 'md:w-2/3 order-1 md:order-2')}>
-          <h2 className={cn(TEXT_CLASSES.h2, 'md:text-3xl text-2xl leading-none -translate-y-2')}>
-            {t('footer.title')}
-          </h2>
-          <div
+        {/* Bouton de contact principal */}
+        <div className={cn(FLEX_CLASSES.colCenter, 'gap-4 mb-12')}>
+          <a
+            href={`${socialNetworks[0].href}?subject=Demande de devis&body=Bonjour, je souhaiterais obtenir un devis pour vos services de nettoyage.`}
             className={cn(
-              FLEX_CLASSES.row,
-              'md:w-fit flex-wrap md:flex-nowrap w-full gap-2 mt-2 flex-row',
+              'px-8 py-4 bg-primary text-primary-foreground rounded-full',
+              'font-semibold text-lg',
+              'hover:bg-primary/90 hover:scale-105',
+              'transition-all duration-300',
+              'shadow-lg hover:shadow-xl',
             )}
           >
-            <a
-              href="mailto:noephilippe29@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full block group"
-              onClick={handleEmailButtonClick}
-            >
-              <Button className="w-full md:w-fit" variant="outline">
-                {t('generics.sendEmail')}
-              </Button>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Row */}
-      <div className={cn(FLEX_CLASSES.row, 'w-full justify-between items-end mt-10 md:mt-15')}>
-        {/* Left */}
-        <div className={cn(FLEX_CLASSES.col, 'w-full')}>
-          <p className={cn(TEXT_CLASSES.p14, 'text-foreground/50')}>{t('generics.designed')}</p>
-          <p className={TEXT_CLASSES.p14}>{'Noé PHILIPPE'}</p>
-        </div>
-
-        {/* Center (Desktop Only) */}
-        <div className={cn(FLEX_CLASSES.col, 'w-full items-center  hidden md:flex')}>
-          <p className={cn(TEXT_CLASSES.p14, 'text-foreground/50 w-fit text-center')}>
-            {t('generics.copyright')}
-          </p>
-          <a
-            href="/privacy-policy.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackButtonClick('privacy_policy_link')}
-          >
-            <p
-              className={cn(
-                TEXT_CLASSES.p14,
-                'text-foreground/50 hover:text-primary transition-colors cursor-pointer',
-              )}
-            >
-              {t('generics.privacyPolicy')}
-            </p>
+            {t('generics.sendEmail')}
           </a>
         </div>
 
-        {/* Right */}
-        <div className={cn(FLEX_CLASSES.col, 'w-full items-end')}>
-          <div className={cn(FLEX_CLASSES.row, 'gap-1')}>
-            <span className="text-green-400 leading-none">{'•'}</span>
-            <p className={cn(TEXT_CLASSES.p14, 'text-primary leading-none')}>{t('status')}</p>
+        {/* Informations de contact */}
+        <div
+          className={cn(
+            'grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl mb-12',
+            'bg-card rounded-2xl p-6 md:p-8',
+            'border border-border',
+          )}
+        >
+          <div className={cn(FLEX_CLASSES.colCenter, 'gap-3')}>
+            <h3 className={cn(TEXT_CLASSES.h4, 'text-foreground')}>{t('footer.contact.title')}</h3>
+            <div className={cn(FLEX_CLASSES.col, 'gap-2 text-center')}>
+              <a
+                href={socialNetworks[0].href}
+                className={cn(
+                  TEXT_CLASSES.p16,
+                  'text-muted-foreground hover:text-accent',
+                  'transition-colors duration-300 cursor-pointer',
+                )}
+              >
+                {'📧'} {t('footer.contact.email')}
+              </a>
+              <a
+                href={socialNetworks[1].href}
+                className={cn(
+                  TEXT_CLASSES.p16,
+                  'text-muted-foreground hover:text-accent',
+                  'transition-colors duration-300 cursor-pointer',
+                )}
+              >
+                {'📞'} {t('footer.contact.phone')}
+              </a>
+            </div>
           </div>
-          <p className={cn(TEXT_CLASSES.p14, 'text-end')}>{t('position')}</p>
+
+          <div className={cn(FLEX_CLASSES.colCenter, 'gap-3')}>
+            <h3 className={cn(TEXT_CLASSES.h4, 'text-foreground')}>{t('footer.zone.title')}</h3>
+            <div className={cn(FLEX_CLASSES.col, 'gap-2 text-center')}>
+              <p className={cn(TEXT_CLASSES.p16, 'text-muted-foreground')}>
+                {'📍'} {t('footer.zone.location')}
+              </p>
+              <p className={cn(TEXT_CLASSES.p16, 'text-muted-foreground')}>
+                {'🕘'} {t('footer.zone.availability')}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright et crédits */}
+        <div className={cn(FLEX_CLASSES.colCenter, 'gap-4 pt-8 border-t border-border')}>
+          <p className={cn(TEXT_CLASSES.p14, 'text-muted-foreground')}>{t('footer.copyright')}</p>
+          <p className={cn(TEXT_CLASSES.p12, 'text-muted-foreground')}>
+            {t('footer.designed')}{' '}
+            <a
+              href="https://noe-philippe.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 transition-colors duration-300 cursor-pointer underline"
+            >
+              {'Noé PHILIPPE'}
+            </a>
+          </p>
         </div>
       </div>
-
-      {/* CopyRight for Mobile */}
-      <div className={cn(FLEX_CLASSES.colCenter, ' md:hidden')}>
-        <p className={cn(TEXT_CLASSES.p14, 'text-foreground/50 mt-10 text-center')}>
-          {t('generics.copyright')}
-        </p>
-        <a
-          href="/privacy-policy.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackButtonClick('privacy_policy_link')}
-        >
-          <p
-            className={cn(
-              TEXT_CLASSES.p14,
-              'text-foreground/50 hover:text-primary transition-colors cursor-pointer',
-            )}
-          >
-            {t('generics.privacyPolicy')}
-          </p>
-        </a>
-      </div>
-    </div>
+    </footer>
   );
 }
