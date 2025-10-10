@@ -1,27 +1,26 @@
-// app/layout.tsx (mise à jour)
 'use client';
 
 import Umami from '@/components/utils/Umami';
 import { AppProvider } from '@/contexts/AppContext';
 import { Locale, messages } from '@/i18n/config';
 import { IntlProvider } from 'next-intl';
-import { Dela_Gothic_One, Monda } from 'next/font/google';
+import { Darker_Grotesque, Montserrat } from 'next/font/google';
 import { ReactNode, useEffect, useState } from 'react';
 import '../../static/styles/app.css';
 
-const delaGothic = Dela_Gothic_One({
+const title = Darker_Grotesque({
   display: 'swap',
-  variable: '--font-dela',
-  weight: '400',
+  variable: '--font-title',
+  weight: ['400', '500', '600', '700'],
   preload: true,
   fallback: ['system-ui', 'arial'],
   adjustFontFallback: true,
   subsets: ['latin'],
 });
 
-const monda = Monda({
+const text = Montserrat({
   display: 'swap',
-  variable: '--font-monda',
+  variable: '--font-text',
   weight: ['400', '700'],
   fallback: ['system-ui', 'arial'],
   adjustFontFallback: true,
@@ -40,7 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   return (
-    <html lang={locale} className={`${delaGothic.variable} ${monda.variable}`}>
+    <html lang={locale} className={`${title.variable} ${text.variable}`}>
       <body>
         <IntlProvider timeZone={timeZone} messages={messages[locale]} locale={locale}>
           <AppProvider>{children}</AppProvider>

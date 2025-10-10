@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 0 0% 11%; /* #1C1C1C */
-    --foreground: 0 0% 95%;
+    --background: 0 0% 100%; /* Blanc pur */
+    --foreground: 0 0% 9%; /* Texte sombre */
 
-    --card: 0 0% 11%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%; /* Cartes blanches */
+    --card-foreground: 0 0% 9%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
 
-    --primary: 267 50% 55%; /* Violet doux */
+    --primary: 213 94% 68%; /* Bleu moderne #3B82F6 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 0% 96%; /* Gris très clair #F5F5F5 */
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 0 0% 25%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 0 0% 96%; /* Gris doux pour fond */
+    --muted-foreground: 0 0% 45%; /* Gris moyen pour texte */
 
-    --accent: 200 100% 60%;
+    --accent: 213 94% 68%; /* Même bleu que primary pour cohérence */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 100% 40%;
+    --destructive: 0 84% 60%; /* Rouge standard */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-    --ring: 267 50% 55%;
+    --border: 0 0% 90%; /* Bordures grises claires */
+    --input: 0 0% 96%; /* Background input gris clair */
+    --ring: 213 94% 68%; /* Focus ring bleu */
 
     --radius: 0.5rem;
   }

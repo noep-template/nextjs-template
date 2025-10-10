@@ -200,8 +200,8 @@ const config: Config = {
 
       // Typographie
       fontFamily: {
-        title: ['var(--font-dela)', 'sans-serif'],
-        mono: ['var(--font-monda)', 'Monda', 'Roboto Mono', 'monospace'],
+        title: ['var(--font-title)', 'sans-serif'],
+        mono: ['var(--font-text)', 'Monda', 'Roboto Mono', 'monospace'],
       },
 
       // Couleurs
