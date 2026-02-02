@@ -12,14 +12,13 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
-
     // Optimisations de performance
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -28,7 +27,6 @@
     "noImplicitReturns": true,
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true,
-
     // Configuration des chemins
     "baseUrl": ".",
     "paths": {
@@ -40,9 +38,17 @@
       "@/services/*": ["./src/services/*"],
       "@/static/*": ["./src/static/*"],
       "@/types/*": ["./src/types/*"],
-      "@/i18n/*": ["./src/i18n/*"]
+      "@/i18n/*": ["./src/i18n/*"],
+      "@packages/*": ["../../packages/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "../../packages/types/sockets/shopping-list-socket.ts"
+  ],
   "exclude": ["node_modules", ".next", "out"]
 }

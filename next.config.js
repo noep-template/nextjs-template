@@ -5,6 +5,15 @@ const createNextIntlPlugin = require('next-intl/plugin');
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/config.ts');
 
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  cacheOnFrontEndNav: true,
+  reloadOnOnline: true,
+  disable: true, // Désactivation forcée du PWA pour test
+});
+
 const nextConfig = {
   // Optimisations de performance
   experimental: {
@@ -26,7 +35,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)\\.(js|css|png|jpg|jpeg|svg|webp|avif|ico|woff|woff2)',
+        source: '/_next/static/(.*)',
         headers: [
           {
             key: 'Cache-Control',
@@ -34,34 +43,8 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Permissions-Policy',
-            value:
-              'interest-cohort=(), camera=(), microphone=(), geolocation=()',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-        ],
-      },
     ];
   },
 };
 
-module.exports = withNextIntl(nextConfig);
+module.exports = withNextIntl(withPWA(nextConfig));

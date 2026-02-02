@@ -1,39 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer base {
-  :root {
-    --background: 0 0% 100%; /* Blanc pur */
-    --foreground: 0 0% 9%; /* Texte sombre */
-
-    --card: 0 0% 100%; /* Cartes blanches */
-    --card-foreground: 0 0% 9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
-
-    --primary: 213 94% 68%; /* Bleu moderne #3B82F6 */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 96%; /* Gris très clair #F5F5F5 */
-    --secondary-foreground: 0 0% 9%;
-
-    --muted: 0 0% 96%; /* Gris doux pour fond */
-    --muted-foreground: 0 0% 45%; /* Gris moyen pour texte */
-
-    --accent: 213 94% 68%; /* Même bleu que primary pour cohérence */
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%; /* Rouge standard */
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 90%; /* Bordures grises claires */
-    --input: 0 0% 96%; /* Background input gris clair */
-    --ring: 213 94% 68%; /* Focus ring bleu */
-
-    --radius: 0.5rem;
-  }
+@theme {
+  --color-background: hsl(0 0% 100%); /* Blanc pur */
+  --color-foreground: hsl(0 0% 9%); /* Texte sombre */
+  --color-card: hsl(0 0% 100%); /* Cartes blanches */
+  --color-card-foreground: hsl(0 0% 9%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(0 0% 9%);
+  --color-primary: hsl(213 94% 68%); /* Bleu moderne #3B82F6 */
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(0 0% 96%); /* Gris très clair #F5F5F5 */
+  --color-secondary-foreground: hsl(0 0% 9%);
+  --color-muted: hsl(0 0% 96%); /* Gris doux pour fond */
+  --color-muted-foreground: hsl(0 0% 45%); /* Gris moyen pour texte */
+  --color-accent: hsl(213 94% 68%); /* Même bleu que primary pour cohérence */
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-destructive: hsl(0 84% 60%); /* Rouge standard */
+  --color-destructive-foreground: hsl(0 0% 100%);
+  --color-border: hsl(0 0% 90%); /* Bordures grises claires */
+  --color-input: hsl(0 0% 96%); /* Background input gris clair */
+  --color-ring: hsl(213 94% 68%); /* Focus ring bleu */
+  --radius: 0.5rem;
 }
 
 * {
@@ -50,10 +37,21 @@ body {
   overflow-x: hidden;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer et Edge */
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  background: var(--color-background);
+  -webkit-text-size-adjust: 100%;
 }
 
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+input,
+textarea,
+select,
+button {
+  font-size: 16px;
 }
 
 .shadow-primary {

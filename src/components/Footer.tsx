@@ -93,13 +93,13 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
             'border border-border',
           )}
         >
-          <ColCenter className="gap-3">
+          <ColCenter className="gap-4">
             <H4 className="text-foreground">{t('footer.contact.title')}</H4>
-            <Col className="gap-2 text-center">
+            <Col className="gap-3 text-center">
               <a
                 href={socialNetworks[0].href}
                 className={cn(
-                  'text-[16px] font-mono font-normal leading-0',
+                  'text-[16px] font-mono font-normal ',
                   'text-muted-foreground hover:text-accent transition-colors duration-300 cursor-pointer',
                 )}
               >
@@ -108,7 +108,7 @@ export function Footer({ className }: FooterProps): React.JSX.Element {
               <a
                 href={socialNetworks[1].href}
                 className={cn(
-                  'text-[16px] font-mono font-normal leading-0',
+                  'text-[16px] font-mono font-normal ',
                   'text-muted-foreground hover:text-accent transition-colors duration-300 cursor-pointer',
                 )}
               >

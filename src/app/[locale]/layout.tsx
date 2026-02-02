@@ -40,6 +40,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang={locale} className={`${title.variable} ${text.variable}`}>
+      <head>
+        <meta name="theme-color" content="hsl(195 30% 10%)" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Shopping" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/logo-192x192.png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="/logo-512x512.png" sizes="512x512" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+      </head>
       <body>
         <IntlProvider timeZone={timeZone} messages={messages[locale]} locale={locale}>
           <AppProvider>{children}</AppProvider>
